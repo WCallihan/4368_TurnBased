@@ -6,6 +6,6 @@ public class RPGStateMachine : StateMachine {
 
     void Start() {
         //set starting state
-        ChangeState<MainMenuState>();
+        ChangeState<SetupState>();
     }
 }
