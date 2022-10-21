@@ -4,10 +4,24 @@ using UnityEngine;
 
 public class BottomCharacterTurnState : PlayerTurnState {
 
-    //TODO: decide if there is any special Enter behaviour
+    public override void Enter() {
+        base.Enter();
+        Debug.Log("Entering Bottom Character Turn State");
+    }
+
+    //FOR TESTING ONLY
+    public override void Tick() {
+        base.Tick();
+        if(Input.GetKeyDown(KeyCode.E)) characterTurnOver = true;
+    }
 
     public override void Exit() {
         base.Exit();
-        //TODO: change state to the enemy turn state
+        Debug.Log("Exiting Bottom Character Turn State");
+        EndTurn();
+    }
+
+    protected override void NextTurn() {
+        StateMachine.ChangeState<EnemyTurnsState>();
     }
 }

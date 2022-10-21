@@ -5,10 +5,24 @@ using UnityEngine;
 //player turn state for the top most character on the team
 public class TopCharacterTurnState : PlayerTurnState {
 
-    //TODO: decide if there is any special Enter behaviour
+    public override void Enter() {
+        base.Enter();
+        Debug.Log("Entering Top Character Turn State");
+        StartTurn();
+    }
+
+    //FOR TESTING ONLY
+    public override void Tick() {
+        base.Tick();
+        if(Input.GetKeyDown(KeyCode.Q)) characterTurnOver = true;
+    }
 
     public override void Exit() {
         base.Exit();
+        Debug.Log("Exiting Top Character Turn State");
+    }
+
+    protected override void NextTurn() {
         StateMachine.ChangeState<MiddleCharacterTurnState>();
     }
 }

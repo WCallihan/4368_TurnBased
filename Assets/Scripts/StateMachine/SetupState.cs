@@ -10,23 +10,32 @@ public class SetupState : RPGState {
 
     //TODO: private array to store characters and their locations
 
+    private bool setupOver;
+
     public override void Enter() {
         //base.Enter();
         Debug.Log("Entering Setup State");
-
-        characterSelectPanel.SetActive(true);
+        setupOver = false;
+        if(characterSelectPanel) characterSelectPanel.SetActive(true);
     }
 
     public override void Tick() {
         //base.Tick();
         //TODO: keep track of where each selected character goes on the field and move them there
+
+        if(Input.GetKeyDown(KeyCode.Space)) setupOver = true; //FOR TESTING ONLY
+
+        if(setupOver) {
+            setupOver = false;
+            StateMachine.ChangeState<TopCharacterTurnState>();
+        }
     }
 
     public override void Exit() {
         //base.Exit();
         Debug.Log("Exiting Setup State");
 
-        characterSelectPanel.SetActive(false);
+        if(characterSelectPanel) characterSelectPanel.SetActive(false);
 
         //TODO: choose the enemies randomly and assign them to the enemy turns state with appropriate positions
     }
