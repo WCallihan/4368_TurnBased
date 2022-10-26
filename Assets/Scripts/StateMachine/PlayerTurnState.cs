@@ -55,10 +55,10 @@ public abstract class PlayerTurnState : RPGState {
     }
 
     //work around function to allow subclasses to call the events
-    protected void StartTurn() {
+    protected void StartPlayerTurn() {
         PlayerTurnStarted?.Invoke();
     }
-    protected void EndTurn() {
+    protected void EndPlayerTurn() {
         PlayerTurnEnded?.Invoke();
     }
 

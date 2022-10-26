@@ -18,7 +18,7 @@ public class BottomCharacterTurnState : PlayerTurnState {
     public override void Exit() {
         base.Exit();
         Debug.Log("Exiting Bottom Character Turn State");
-        EndTurn();
+        EndPlayerTurn();
     }
 
     protected override void NextTurn() {

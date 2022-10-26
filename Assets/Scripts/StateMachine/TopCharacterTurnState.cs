@@ -8,7 +8,7 @@ public class TopCharacterTurnState : PlayerTurnState {
     public override void Enter() {
         base.Enter();
         Debug.Log("Entering Top Character Turn State");
-        StartTurn();
+        StartPlayerTurn();
     }
 
     //FOR TESTING ONLY
