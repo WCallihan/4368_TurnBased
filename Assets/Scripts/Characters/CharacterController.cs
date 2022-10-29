@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterController : MonoBehaviour {
 
-    [SerializeField] private Sprite sprite;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject actionsPanel;
     private CharacterData charData;
 
@@ -16,12 +17,12 @@ public class CharacterController : MonoBehaviour {
 
     public void AssignCharacter(CharacterData data) {
         charData = data;
-        sprite = charData.Sprite;
+        spriteRenderer.sprite = charData.Sprite;
     }
 
     public void UnassignCharacter() {
         charData = null;
-        sprite = null;
+        spriteRenderer.sprite = null;
     }
 
     public void ShowPanel() { actionsPanel.SetActive(true); }

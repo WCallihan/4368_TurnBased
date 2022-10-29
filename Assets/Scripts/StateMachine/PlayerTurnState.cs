@@ -7,7 +7,7 @@ using UnityEngine;
 public abstract class PlayerTurnState : RPGState {
 
     [SerializeField] private InputController input;
-    //TODO: public character scriptable object and/or game object
+    [SerializeField] private CharacterController character;
 
     public static event Action PlayerTurnStarted;
     public static event Action PlayerTurnEnded;
@@ -27,7 +27,7 @@ public abstract class PlayerTurnState : RPGState {
         //TODO: subscribe to the character's events
 
         characterTurnOver = false;
-        //TODO: tell the character to show start their turn or show their action panel
+        character.ShowPanel();
     }
 
     public override void Tick() {

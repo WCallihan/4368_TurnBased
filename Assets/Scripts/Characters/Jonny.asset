@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Jonny
   m_EditorClassIdentifier: 
   characterName: Jonny
-  characterSprite: {fileID: 0}
+  characterSprite: {fileID: 21300000, guid: 036013a7f1bc99b40a54b09787fdc639, type: 3}
   healthStat: 50
   damageStat: 100
   healStat: 0

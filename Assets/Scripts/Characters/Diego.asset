@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Diego
   m_EditorClassIdentifier: 
   characterName: Diego
-  characterSprite: {fileID: 0}
+  characterSprite: {fileID: 21300000, guid: 57ad136c2d7552a4ebfa05b7b7bc9bba, type: 3}
   healthStat: 50
   damageStat: 20
   healStat: 100
