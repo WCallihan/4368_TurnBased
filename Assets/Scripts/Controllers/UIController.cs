@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour {
 
+    [Header("Turn Indicators")]
     [SerializeField] private GameObject playerTurnUI;
     [SerializeField] private GameObject enemyTurnUI;
+    [Header("End Screens")]
     [SerializeField] private GameObject winUI;
     [SerializeField] private GameObject loseUI;
+    [Header("Target Selection Panels")]
+    [SerializeField] private GameObject allyTargetSelectionUI;
+    [SerializeField] private GameObject enemyTargetSelectionUI;
+
+    private GameObject currentTargetingUI;
 
     private void OnEnable() {
         //subscribe to turn start and ending events to update UI
@@ -19,6 +26,8 @@ public class UIController : MonoBehaviour {
         WinState.WinStateExited += HideWin;
         LoseState.LoseStateEntered += ShowLoss;
         LoseState.LoseStateExited += HideLoss;
+        AbilityBase.StartTargetSelection += ShowTargetSelection;
+        CharacterController.CharacterTargeted += HideTargetSelection;
     }
 
     private void OnDisable() {
@@ -31,6 +40,8 @@ public class UIController : MonoBehaviour {
         WinState.WinStateExited -= HideWin;
         LoseState.LoseStateEntered -= ShowLoss;
         LoseState.LoseStateExited -= HideLoss;
+        AbilityBase.StartTargetSelection -= ShowTargetSelection;
+        CharacterController.CharacterTargeted -= HideTargetSelection;
     }
 
     private void Start() {
@@ -40,35 +51,30 @@ public class UIController : MonoBehaviour {
         HideLoss();
     }
 
-    private void ShowPlayerTurn() {
-        playerTurnUI.SetActive(true);
+    private void ShowPlayerTurn() { playerTurnUI.SetActive(true); }
+
+    private void HidePlayerTurn() { playerTurnUI.SetActive(false); }
+
+    private void ShowEnemyTurn() { enemyTurnUI.SetActive(true); }
+
+    private void HideEnemyTurn() { enemyTurnUI.SetActive(false); }
+
+    private void ShowWin() { winUI.SetActive(true); }
+
+    private void HideWin() { winUI.SetActive(false); }
+
+    private void ShowLoss() { loseUI.SetActive(true); }
+
+    private void HideLoss() { loseUI.SetActive(false); }
+
+    private void ShowTargetSelection(bool allies) {
+        if(allies) {
+            currentTargetingUI = allyTargetSelectionUI;
+        } else {
+            currentTargetingUI = enemyTargetSelectionUI;
+        }
+        currentTargetingUI.SetActive(true);
     }
 
-    private void HidePlayerTurn() {
-        playerTurnUI.SetActive(false);
-    }
-
-    private void ShowEnemyTurn() {
-        enemyTurnUI.SetActive(true);
-    }
-
-    private void HideEnemyTurn() {
-        enemyTurnUI.SetActive(false);
-    }
-
-    private void ShowWin() {
-        winUI.SetActive(true);
-    }
-
-    private void HideWin() {
-        winUI.SetActive(false);
-    }
-
-    private void ShowLoss() {
-        loseUI.SetActive(true);
-    }
-
-    private void HideLoss() {
-        loseUI.SetActive(false);
-    }
+    private void HideTargetSelection(CharacterController useless) { if(currentTargetingUI) currentTargetingUI.SetActive(false); }
 }

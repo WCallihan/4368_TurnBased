@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Diego
   characterSprite: {fileID: 21300000, guid: 57ad136c2d7552a4ebfa05b7b7bc9bba, type: 3}
-  healthStat: 50
-  damageStat: 20
-  healStat: 100
+  maxHealth: 100
+  attackStat: 30
+  defenseStat: 50
+  healingStat: 100
+  ability1: {fileID: 11400000, guid: d022f1ab75e39414a8bf7e25f2df95a5, type: 2}
+  ability2: {fileID: 11400000, guid: 757efc554eeb03542b2b282e18416819, type: 2}

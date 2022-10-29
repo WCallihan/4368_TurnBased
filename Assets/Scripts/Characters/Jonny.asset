@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Jonny
   characterSprite: {fileID: 21300000, guid: 036013a7f1bc99b40a54b09787fdc639, type: 3}
-  healthStat: 50
-  damageStat: 100
-  healStat: 0
+  maxHealth: 75
+  attackStat: 100
+  defenseStat: 50
+  healingStat: 0
+  ability1: {fileID: 0}
+  ability2: {fileID: 0}

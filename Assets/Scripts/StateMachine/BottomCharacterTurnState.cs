@@ -9,12 +9,6 @@ public class BottomCharacterTurnState : PlayerTurnState {
         Debug.Log("Entering Bottom Character Turn State");
     }
 
-    //FOR TESTING ONLY
-    public override void Tick() {
-        base.Tick();
-        if(Input.GetKeyDown(KeyCode.E)) characterTurnOver = true;
-    }
-
     public override void Exit() {
         base.Exit();
         Debug.Log("Exiting Bottom Character Turn State");

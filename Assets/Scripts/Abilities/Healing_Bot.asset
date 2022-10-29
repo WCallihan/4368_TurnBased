@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee181207f9f0e340b6aa53ee8331427, type: 3}
+  m_Name: Healing_Bot
+  m_EditorClassIdentifier: 
+  abilityName: Healing Bot
+  abilityDescription: Deploys an engineered healing robot to a single ally to heal
+    them a lot.
+  target: 1
+  statToUse: 2
+  power: 100

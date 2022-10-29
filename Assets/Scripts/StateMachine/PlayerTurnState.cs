@@ -12,8 +12,6 @@ public abstract class PlayerTurnState : RPGState {
     public static event Action PlayerTurnStarted;
     public static event Action PlayerTurnEnded;
 
-    protected bool characterTurnOver;
-
     protected abstract void NextTurn();
 
     public override void Enter() {
@@ -24,21 +22,15 @@ public abstract class PlayerTurnState : RPGState {
         input.PressedAbility2 += UseAbility2;
         input.PressedAttack += UseAttack;
         input.PressedDodge += UseDodge;
-        //TODO: subscribe to the character's events
+        //subscribe to the action panel events
+        ActionsPanel.Ability1Selected += UseAbility1;
+        ActionsPanel.Ability2Selected += UseAbility2;
+        ActionsPanel.AttackSelected += UseAttack;
+        ActionsPanel.DodgeSelected += UseDodge;
+        //subscribe to the ability event
+        AbilityBase.EndCharacterTurn += EndCharacterTurn;
 
-        characterTurnOver = false;
         character.ShowPanel();
-    }
-
-    public override void Tick() {
-        //base.Tick();
-
-        //TODO: check for win condition
-
-        if(characterTurnOver) {
-            characterTurnOver = false;
-            NextTurn();
-        }
     }
 
     public override void Exit() {
@@ -49,25 +41,34 @@ public abstract class PlayerTurnState : RPGState {
         input.PressedAbility2 -= UseAbility2;
         input.PressedAttack -= UseAttack;
         input.PressedDodge -= UseDodge;
-        //TODO: unsubscribe from the character's events
+        //unsubscribe to the action panel events
+        ActionsPanel.Ability1Selected -= UseAbility1;
+        ActionsPanel.Ability2Selected -= UseAbility2;
+        ActionsPanel.AttackSelected -= UseAttack;
+        ActionsPanel.DodgeSelected -= UseDodge;
+        //unsubscribe to the ability event
+        AbilityBase.EndCharacterTurn -= EndCharacterTurn;
 
-        //TODO: turn off any character panels
+        character.HidePanel();
     }
 
-    //work around function to allow subclasses to call the events
-    protected void StartPlayerTurn() {
-        PlayerTurnStarted?.Invoke();
+
+    //work around functions to allow subclasses to call the events
+    protected void StartPlayerTurn() { PlayerTurnStarted?.Invoke(); }
+    protected void EndPlayerTurn() { PlayerTurnEnded?.Invoke(); }
+
+    private void EndCharacterTurn() {
+        //TODO: check win condition
+        NextTurn();
     }
-    protected void EndPlayerTurn() {
-        PlayerTurnEnded?.Invoke();
-    }
+
 
     public void UseAbility1() {
-
+        character.CharData.Ability1.UseAbility(character);
     }
 
     public void UseAbility2() {
-
+        character.CharData.Ability2.UseAbility(character);
     }
 
     public void UseAttack() {

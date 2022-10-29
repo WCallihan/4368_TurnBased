@@ -9,12 +9,6 @@ public class MiddleCharacterTurnState : PlayerTurnState {
         Debug.Log("Entering Middle Character Turn State");
     }
 
-    //FOR TESTING ONLY
-    public override void Tick() {
-        base.Tick();
-        if(Input.GetKeyDown(KeyCode.W)) characterTurnOver = true;
-    }
-
     public override void Exit() {
         base.Exit();
         Debug.Log("Exiting Middle Character Turn State");

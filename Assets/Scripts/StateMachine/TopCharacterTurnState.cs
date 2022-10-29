@@ -11,12 +11,6 @@ public class TopCharacterTurnState : PlayerTurnState {
         StartPlayerTurn();
     }
 
-    //FOR TESTING ONLY
-    public override void Tick() {
-        base.Tick();
-        if(Input.GetKeyDown(KeyCode.Q)) characterTurnOver = true;
-    }
-
     public override void Exit() {
         base.Exit();
         Debug.Log("Exiting Top Character Turn State");
