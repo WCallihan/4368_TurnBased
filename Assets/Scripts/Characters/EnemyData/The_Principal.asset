@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47e170095e282ee44ab6b310f9d62877, type: 3}
+  m_Name: The_Principal
+  m_EditorClassIdentifier: 
+  characterName: The Principal
+  characterSprite: {fileID: 21300000, guid: 2aa3e52def9a3be4899868b0c0f90eda, type: 3}
+  maxHealth: 150
+  attackStat: 75
+  defenseStat: 0
+  healingStat: 0
+  ability1: {fileID: 0}
+  ability2: {fileID: 0}

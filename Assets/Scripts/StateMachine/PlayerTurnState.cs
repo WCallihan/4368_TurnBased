@@ -7,7 +7,7 @@ using UnityEngine;
 public abstract class PlayerTurnState : RPGState {
 
     [SerializeField] private InputController input;
-    [SerializeField] private CharacterController character;
+    [SerializeField] private PlayerCharacter character;
 
     public static event Action PlayerTurnStarted;
     public static event Action PlayerTurnEnded;

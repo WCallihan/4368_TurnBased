@@ -6,18 +6,21 @@ using UnityEngine.UI;
 
 public class SetupController : MonoBehaviour {
 
-    [SerializeField] private CharacterController topCharacter;
-    [SerializeField] private CharacterController middleCharacter;
-    [SerializeField] private CharacterController bottomCharacter;
-    //TODO: serialized list of enemy characters
-    //TODO: serialized list of enemy data objects
+    [Header("Player Characters")]
+    [SerializeField] private PlayerCharacter topCharacter;
+    [SerializeField] private PlayerCharacter middleCharacter;
+    [SerializeField] private PlayerCharacter bottomCharacter;
 
-    private CharacterController[] orderedControllers;
+    [Header("Enemy Character Objects")]
+    [SerializeField] private List<EnemyCharacter> enemyCharacters;
+    [SerializeField] private List<CharacterData> enemyDatas;
+
+    private PlayerCharacter[] orderedPlayerControllers;
 
     public static event Action ConfirmedSelection;
 
     private void Awake() {
-        orderedControllers = new CharacterController[] { topCharacter, middleCharacter, bottomCharacter };
+        orderedPlayerControllers = new PlayerCharacter[] { topCharacter, middleCharacter, bottomCharacter };
     }
 
     //toggle whether the character is selected depending on the color of their blackout panel
@@ -31,7 +34,7 @@ public class SetupController : MonoBehaviour {
 
     //assign the character to the first available character controller
     private void AssignCharacter(CharacterData data, GameObject panel) {
-        foreach (var c in orderedControllers) {
+        foreach (var c in orderedPlayerControllers) {
             if (c.CharData == null) {
                 c.AssignCharacter(data);
                 panel.SetActive(true);
@@ -42,7 +45,7 @@ public class SetupController : MonoBehaviour {
 
     //unassign the character from its currently assigned character controller
     private void UnassignCharacter(CharacterData data, GameObject panel) {
-        foreach (var c in orderedControllers) {
+        foreach (var c in orderedPlayerControllers) {
             if(c.CharData == data) {
                 c.UnassignCharacter();
                 panel.SetActive(false);
@@ -54,12 +57,20 @@ public class SetupController : MonoBehaviour {
     //called by the Confirm button and triggers the end of the setup state
     public void ConfirmSelection() {
         //check that three characters are selected
-        foreach (var c in orderedControllers) {
+        foreach (var c in orderedPlayerControllers) {
             if(c.CharData == null) {
                 return;
             }
         }
-        //TODO: randomly assign enemy characters and turn them on
+
+        //randomly assign enemy characters
+        List<CharacterData> enemyDataCopy = enemyDatas;
+        foreach (var e in enemyCharacters) {
+            int randInd = UnityEngine.Random.Range(0, enemyDataCopy.Count);
+            e.AssignCharacter(enemyDataCopy[randInd]);
+            enemyDataCopy.RemoveAt(randInd);
+        }
+
         ConfirmedSelection?.Invoke();
     }
 }

@@ -8,8 +8,6 @@ public class SetupState : RPGState {
     [SerializeField] private GameObject characterSelectPanel;
     [SerializeField] private EnemyTurnsState enemyTurnsState;
 
-    //TODO: private array to store characters and their locations
-
     public override void Enter() {
         //base.Enter();
         Debug.Log("Entering Setup State");

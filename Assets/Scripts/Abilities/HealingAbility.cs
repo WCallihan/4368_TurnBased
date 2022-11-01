@@ -5,13 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Abilities/HealingAbility")]
 public class HealingAbility : AbilityBase {
 
-    protected override void ApplyAbility(CharacterController user, CharacterController target) {
+    protected override void ApplyAbility(PlayerCharacter user, CharacterController target) {
         float healingAmount = CalcHealing(user);
         target.Heal(healingAmount);
         AbilityOver();
     }
 
-    protected override void ApplyAbility(CharacterController user, List<CharacterController> targets) {
+    protected override void ApplyAbility(PlayerCharacter user, List<CharacterController> targets) {
         float healingAmount = CalcHealing(user);
         foreach (var t in targets) {
             t.Heal(healingAmount);
@@ -20,7 +20,7 @@ public class HealingAbility : AbilityBase {
     }
 
     //uses a similar equation to Pokemon
-    private float CalcHealing(CharacterController user) {
+    private float CalcHealing(PlayerCharacter user) {
         return (user.GetStat(CharacterStat.Healing) * Power) / 100;
     }
 }

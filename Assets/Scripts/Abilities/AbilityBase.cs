@@ -19,12 +19,12 @@ public abstract class AbilityBase : ScriptableObject {
     public CharacterStat Stat => statToUse;
     public float Power => power;
 
-    private CharacterController user;
+    private PlayerCharacter user;
 
     public static event Action<bool> StartTargetSelection;
     public static event Action EndCharacterTurn;
 
-    public void UseAbility(CharacterController abilityUser) {
+    public void UseAbility(PlayerCharacter abilityUser) {
         user = abilityUser;
         switch(target) {
             case AbilityTarget.Self:
@@ -73,10 +73,10 @@ public abstract class AbilityBase : ScriptableObject {
     }
 
     //used for abilities that target one character
-    protected abstract void ApplyAbility(CharacterController user, CharacterController target);
+    protected abstract void ApplyAbility(PlayerCharacter user, CharacterController target);
 
     //used for abilities that target multiple characters
-    protected abstract void ApplyAbility(CharacterController user, List<CharacterController> targets);
+    protected abstract void ApplyAbility(PlayerCharacter user, List<CharacterController> targets);
 
     //helper function to allow subclasses to call the event
     protected void AbilityOver() { EndCharacterTurn?.Invoke(); }
