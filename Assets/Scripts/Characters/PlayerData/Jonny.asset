@@ -18,5 +18,5 @@ MonoBehaviour:
   attackStat: 100
   defenseStat: 50
   healingStat: 0
-  ability1: {fileID: 0}
-  ability2: {fileID: 0}
+  ability1: {fileID: 11400000, guid: 8cdee1ec0dbace942829af12ca6db9bf, type: 2}
+  ability2: {fileID: 11400000, guid: 757efc554eeb03542b2b282e18416819, type: 2}

@@ -16,15 +16,15 @@ public abstract class AbilityBase : ScriptableObject {
     public string AbilityName => abilityName;
     public string AbilityDescription => abilityDescription;
     public AbilityTarget Target => target;
-    public CharacterStat Stat => statToUse;
+    public CharacterStat StatToUse => statToUse;
     public float Power => power;
 
-    private PlayerCharacter user;
+    private CharacterControllerBase user;
 
     public static event Action<bool> StartTargetSelection;
     public static event Action EndCharacterTurn;
 
-    public void UseAbility(PlayerCharacter abilityUser) {
+    public void UseAbility(CharacterControllerBase abilityUser) {
         user = abilityUser;
         switch(target) {
             case AbilityTarget.Self:
@@ -49,34 +49,34 @@ public abstract class AbilityBase : ScriptableObject {
         //invoke static event to tell UI to turn on target selection UI
         StartTargetSelection?.Invoke(allies);
         //subscribe to CharacterController static event to see when they're clicked
-        CharacterController.CharacterTargeted += SetSingleTarget;
+        CharacterControllerBase.CharacterTargeted += SetSingleTarget;
     }
 
-    private void SetSingleTarget(CharacterController singleTarget) {
+    private void SetSingleTarget(CharacterControllerBase singleTarget) {
         //apply the ability to the target
         ApplyAbility(user, singleTarget);
         //unsubscribe from the event just to be safe
-        CharacterController.CharacterTargeted -= SetSingleTarget;
+        CharacterControllerBase.CharacterTargeted -= SetSingleTarget;
     }
 
     private void SelectMultipleTargets(bool allies) {
-        List<CharacterController> multipleTargets = new List<CharacterController>();
-        //get all character controllers in the scene
-        CharacterController[] potentialTargets = FindObjectsOfType<CharacterController>();
-        //check if the character controller is on the right layer, and then add to targets if so
-        foreach (var t in potentialTargets) {
-            if((t.gameObject.layer == LayerMask.NameToLayer("PlayerCharacter")) == allies) {
-                multipleTargets.Add(t);
-            }
+        //get all approprriate controllers
+        CharacterControllerBase[] targetsArray;
+        if(allies) {
+            targetsArray = FindObjectsOfType<PlayerCharacter>();
+        } else {
+            targetsArray = FindObjectsOfType<EnemyCharacter>();
         }
+        //convert to list and apply the ability
+        List<CharacterControllerBase> multipleTargets = new List<CharacterControllerBase>(targetsArray);
         ApplyAbility(user, multipleTargets);
     }
 
     //used for abilities that target one character
-    protected abstract void ApplyAbility(PlayerCharacter user, CharacterController target);
+    protected abstract void ApplyAbility(CharacterControllerBase user, CharacterControllerBase target);
 
     //used for abilities that target multiple characters
-    protected abstract void ApplyAbility(PlayerCharacter user, List<CharacterController> targets);
+    protected abstract void ApplyAbility(CharacterControllerBase user, List<CharacterControllerBase> targets);
 
     //helper function to allow subclasses to call the event
     protected void AbilityOver() { EndCharacterTurn?.Invoke(); }

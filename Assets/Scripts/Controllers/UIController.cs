@@ -27,7 +27,7 @@ public class UIController : MonoBehaviour {
         LoseState.LoseStateEntered += ShowLoss;
         LoseState.LoseStateExited += HideLoss;
         AbilityBase.StartTargetSelection += ShowTargetSelection;
-        CharacterController.CharacterTargeted += HideTargetSelection;
+        CharacterControllerBase.CharacterTargeted += HideTargetSelection;
     }
 
     private void OnDisable() {
@@ -41,7 +41,7 @@ public class UIController : MonoBehaviour {
         LoseState.LoseStateEntered -= ShowLoss;
         LoseState.LoseStateExited -= HideLoss;
         AbilityBase.StartTargetSelection -= ShowTargetSelection;
-        CharacterController.CharacterTargeted -= HideTargetSelection;
+        CharacterControllerBase.CharacterTargeted -= HideTargetSelection;
     }
 
     private void Start() {
@@ -76,5 +76,5 @@ public class UIController : MonoBehaviour {
         currentTargetingUI.SetActive(true);
     }
 
-    private void HideTargetSelection(CharacterController useless) { if(currentTargetingUI) currentTargetingUI.SetActive(false); }
+    private void HideTargetSelection(CharacterControllerBase useless) { if(currentTargetingUI) currentTargetingUI.SetActive(false); }
 }

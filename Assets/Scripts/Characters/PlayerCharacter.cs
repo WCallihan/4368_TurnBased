@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCharacter : CharacterController {
+public class PlayerCharacter : CharacterControllerBase {
 
     [SerializeField] private ActionsPanel actionsPanel;
 

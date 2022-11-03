@@ -72,10 +72,10 @@ public abstract class PlayerTurnState : RPGState {
     }
 
     public void UseAttack() {
-
+        //TODO: call (static?) attack script usage
     }
 
     public void UseDodge() {
-
+        //TODO: call (static?) dodge script usage
     }
 }
