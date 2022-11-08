@@ -5263,7 +5263,9 @@ GameObject:
   - component: {fileID: 1819846680}
   - component: {fileID: 1819846679}
   - component: {fileID: 1819846678}
-  - component: {fileID: 1819846677}
+  - component: {fileID: 1819846683}
+  - component: {fileID: 1819846682}
+  - component: {fileID: 1819846681}
   m_Layer: 0
   m_Name: StateController
   m_TagString: Untagged
@@ -5299,7 +5301,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterSelectPanel: {fileID: 6553120}
-  enemyTurnsState: {fileID: 1819846677}
 --- !u!114 &1819846676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5310,18 +5311,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 960abc51447062f4e9f61d2165747fa6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1819846677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1819846673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72d716ba5a844314d84e92d95a994e6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1819846678
@@ -5337,7 +5326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 565481891}
-  character: {fileID: 224655195}
+  playerCharacter: {fileID: 224655195}
 --- !u!114 &1819846679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5351,7 +5340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 565481891}
-  character: {fileID: 1473108445}
+  playerCharacter: {fileID: 1473108445}
 --- !u!114 &1819846680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5365,7 +5354,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 565481891}
-  character: {fileID: 1901409801}
+  playerCharacter: {fileID: 1901409801}
+--- !u!114 &1819846681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819846673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da29d9b360bfd2e409f4a10f703a9055, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyCharacter: {fileID: 2113530885}
+--- !u!114 &1819846682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819846673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66c7e0b23361be844870e4ad4095a20e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyCharacter: {fileID: 1816068011}
+--- !u!114 &1819846683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819846673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41e4ea31dbd887446b8dd1068574018d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyCharacter: {fileID: 851402722}
 --- !u!1 &1842343409
 GameObject:
   m_ObjectHideFlags: 0

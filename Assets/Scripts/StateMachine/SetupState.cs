@@ -6,7 +6,6 @@ using UnityEngine;
 public class SetupState : RPGState {
 
     [SerializeField] private GameObject characterSelectPanel;
-    [SerializeField] private EnemyTurnsState enemyTurnsState;
 
     public override void Enter() {
         //base.Enter();

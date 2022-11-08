@@ -12,10 +12,10 @@ public class BottomCharacterTurnState : PlayerTurnState {
     public override void Exit() {
         base.Exit();
         Debug.Log("Exiting Bottom Character Turn State");
-        EndPlayerTurn();
+        EndPlayerTurns();
     }
 
     protected override void NextTurn() {
-        StateMachine.ChangeState<EnemyTurnsState>();
+        StateMachine.ChangeState<TopEnemyTurnState>();
     }
 }

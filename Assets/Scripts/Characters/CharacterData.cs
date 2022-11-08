@@ -13,6 +13,8 @@ public class CharacterData : ScriptableObject {
     [SerializeField, Range(0, 100)] private float healingStat;
     [SerializeField] private AbilityBase ability1;
     [SerializeField] private AbilityBase ability2;
+    [SerializeField] private DamagingAbility basicAttack;
+    [SerializeField] private StatisAbility basicDodge;
 
     public string Name => characterName;
     public Sprite Sprite => characterSprite;
@@ -22,4 +24,6 @@ public class CharacterData : ScriptableObject {
     public float HealingStat => healingStat;
     public AbilityBase Ability1 => ability1;
     public AbilityBase Ability2 => ability2;
+    public DamagingAbility BasicAttack => basicAttack;
+    public StatisAbility BasicDodge => basicDodge;
 }

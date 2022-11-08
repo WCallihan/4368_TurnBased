@@ -27,7 +27,7 @@ public abstract class StateMachine : MonoBehaviour {
         }
     }
 
-    //start the state change if it is a new state and we are no current transitioning
+    //start the state change if it is a new state and we are not currently transitioning
     private void InitiateStateChange(State targetState) {
         if(currentState != targetState && !InTransition) {
             Transition(targetState);

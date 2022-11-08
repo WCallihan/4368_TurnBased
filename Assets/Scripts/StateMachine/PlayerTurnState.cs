@@ -7,10 +7,10 @@ using UnityEngine;
 public abstract class PlayerTurnState : RPGState {
 
     [SerializeField] private InputController input;
-    [SerializeField] private PlayerCharacter character;
+    [SerializeField] private PlayerCharacter playerCharacter;
 
     public static event Action PlayerTurnStarted;
-    public static event Action PlayerTurnEnded;
+    public static event Action PlayerTurnsEnded;
 
     protected abstract void NextTurn();
 
@@ -30,7 +30,7 @@ public abstract class PlayerTurnState : RPGState {
         //subscribe to the ability event
         AbilityBase.EndCharacterTurn += EndCharacterTurn;
 
-        character.ShowPanel();
+        playerCharacter.ShowPanel();
     }
 
     public override void Exit() {
@@ -49,13 +49,14 @@ public abstract class PlayerTurnState : RPGState {
         //unsubscribe to the ability event
         AbilityBase.EndCharacterTurn -= EndCharacterTurn;
 
-        character.HidePanel();
+        playerCharacter.HidePanel();
     }
 
 
     //work around functions to allow subclasses to call the events
-    protected void StartPlayerTurn() { PlayerTurnStarted?.Invoke(); }
-    protected void EndPlayerTurn() { PlayerTurnEnded?.Invoke(); }
+    protected void StartPlayerTurns() { PlayerTurnStarted?.Invoke(); }
+    protected void EndPlayerTurns() { PlayerTurnsEnded?.Invoke(); }
+
 
     private void EndCharacterTurn() {
         //TODO: check win condition
@@ -64,18 +65,18 @@ public abstract class PlayerTurnState : RPGState {
 
 
     public void UseAbility1() {
-        character.CharData.Ability1.UseAbility(character);
+        playerCharacter.CharData.Ability1.UseAbility(playerCharacter);
     }
 
     public void UseAbility2() {
-        character.CharData.Ability2.UseAbility(character);
+        playerCharacter.CharData.Ability2.UseAbility(playerCharacter);
     }
 
     public void UseAttack() {
-        //TODO: call (static?) attack script usage
+        playerCharacter.CharData.BasicAttack.UseAbility(playerCharacter);
     }
 
     public void UseDodge() {
-        //TODO: call (static?) dodge script usage
+        playerCharacter.CharData.BasicDodge.UseAbility(playerCharacter);
     }
 }

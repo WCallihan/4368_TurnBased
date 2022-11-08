@@ -20,3 +20,5 @@ MonoBehaviour:
   healingStat: 0
   ability1: {fileID: 0}
   ability2: {fileID: 0}
+  basicAttack: {fileID: 11400000, guid: 138b25a918d405d4a980b339c5d024e5, type: 2}
+  basicDodge: {fileID: 0}
