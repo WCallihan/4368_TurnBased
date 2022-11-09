@@ -8,6 +8,7 @@ public class HealingAbility : AbilityBase {
     protected override void ApplyAbility(CharacterControllerBase user, CharacterControllerBase target) {
         float healingAmount = CalcHealing(user);
         target.Heal(healingAmount);
+        uiController.DisplayActionTaken($"{user.CharData.Name} healed {target.CharData.Name} with {AbilityName} for {healingAmount} hit points");
         AbilityOver();
     }
 
@@ -16,6 +17,7 @@ public class HealingAbility : AbilityBase {
         foreach (var t in targets) {
             t.Heal(healingAmount);
         }
+        uiController.DisplayActionTaken($"{user.CharData.Name} healed all allies with {AbilityName} for {healingAmount} hit points");
         AbilityOver();
     }
 

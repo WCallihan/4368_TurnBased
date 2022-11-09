@@ -12,10 +12,16 @@ public class CharacterControllerBase : MonoBehaviour {
 
     protected CharacterData charData;
     private float currentHealth;
+    private bool dead;
 
     public CharacterData CharData => charData;
+    public bool Dead => dead;
 
     public static event Action<CharacterControllerBase> CharacterTargeted;
+
+    private void Awake() {
+        dead = false;
+    }
 
     public void AssignCharacter(CharacterData data) {
         charData = data;
@@ -47,6 +53,8 @@ public class CharacterControllerBase : MonoBehaviour {
     }
 
     public void Heal(float healing) {
+        if(dead) return;
+
         Debug.Log($"{gameObject.name} healed by {healing}");
 
         //apply healing, but clamp at the MaxHealth of the character
@@ -60,6 +68,11 @@ public class CharacterControllerBase : MonoBehaviour {
 
         //apply damage, but clamp at 0
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, currentHealth);
+
+        if(currentHealth == 0) {
+            dead = true;
+            spriteRenderer.sprite = null;
+        }
 
         //TODO: update character ui
     }

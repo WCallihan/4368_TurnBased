@@ -23,13 +23,15 @@ public abstract class StateMachine : MonoBehaviour {
         if(targetState == null) {
             Debug.LogWarning($"Cannot change to state because it does not exist on {gameObject.name}");
         } else {
-            InitiateStateChange(targetState);
+            StartCoroutine(InitiateStateChange(targetState));
         }
     }
 
     //start the state change if it is a new state and we are not currently transitioning
-    private void InitiateStateChange(State targetState) {
-        if(currentState != targetState && !InTransition) {
+    private IEnumerator InitiateStateChange(State targetState) {
+        if(currentState != targetState) {
+            //wait until not transitioning, then transition to target state
+            yield return new WaitUntil(() => !InTransition);
             Transition(targetState);
         }
     }

@@ -20,11 +20,13 @@ public abstract class AbilityBase : ScriptableObject {
     public float Power => power;
 
     private CharacterControllerBase user;
+    protected UIController uiController;
 
     public static event Action<bool> StartTargetSelection;
     public static event Action EndCharacterTurn;
 
     public void UseAbility(CharacterControllerBase abilityUser) {
+        uiController = FindObjectOfType<UIController>();
         user = abilityUser;
         switch(target) {
             case AbilityTarget.Self:
@@ -79,5 +81,7 @@ public abstract class AbilityBase : ScriptableObject {
     protected abstract void ApplyAbility(CharacterControllerBase user, List<CharacterControllerBase> targets);
 
     //helper function to allow subclasses to call the event
-    protected void AbilityOver() { EndCharacterTurn?.Invoke(); }
+    protected void AbilityOver() {
+        EndCharacterTurn?.Invoke();
+    }
 }

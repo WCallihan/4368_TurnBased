@@ -17,6 +17,12 @@ public abstract class PlayerTurnState : RPGState {
     public override void Enter() {
         //base.Enter();
 
+        //skip everything if the character is dead
+        if(playerCharacter.Dead) {
+            NextTurn();
+            return;
+        }
+
         //subscribe to input events
         input.PressedAbility1 += UseAbility1;
         input.PressedAbility2 += UseAbility2;
@@ -59,8 +65,17 @@ public abstract class PlayerTurnState : RPGState {
 
 
     private void EndCharacterTurn() {
-        //TODO: check win condition
-        NextTurn();
+        var enemies = FindObjectsOfType<EnemyCharacter>();
+        foreach(var e in enemies) {
+            if(!e.Dead) {
+                //an enemy is alive, the game continues
+                NextTurn();
+                return;
+            }
+        }
+
+        //all enemies are dead, go to win state
+        StateMachine.ChangeState<WinState>();
     }
 
 

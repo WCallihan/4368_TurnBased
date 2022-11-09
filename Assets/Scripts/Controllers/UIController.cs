@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UIController : MonoBehaviour {
@@ -13,8 +14,11 @@ public class UIController : MonoBehaviour {
     [Header("Target Selection Panels")]
     [SerializeField] private GameObject allyTargetSelectionUI;
     [SerializeField] private GameObject enemyTargetSelectionUI;
+    [Header("Action Taken Display")]
+    [SerializeField] private TextMeshProUGUI actionTakenText;
 
     private GameObject currentTargetingUI;
+    private static int displaysCountingDown;
 
     private void OnEnable() {
         //subscribe to turn start and ending events to update UI
@@ -49,6 +53,7 @@ public class UIController : MonoBehaviour {
         HideEnemyTurn();
         HideWin();
         HideLoss();
+        displaysCountingDown = 0;
     }
 
     private void ShowPlayerTurn() { playerTurnUI.SetActive(true); }
@@ -77,4 +82,16 @@ public class UIController : MonoBehaviour {
     }
 
     private void HideTargetSelection(CharacterControllerBase useless) { if(currentTargetingUI) currentTargetingUI.SetActive(false); }
+
+    public void DisplayActionTaken(string actionTakenString) {
+        StartCoroutine(ActionTakenCoroutine(actionTakenString));
+    }
+
+    private IEnumerator ActionTakenCoroutine(string actionTakenString) {
+        displaysCountingDown++;
+        actionTakenText.text = actionTakenString;
+        yield return new WaitForSeconds(2);
+        displaysCountingDown--;
+        if(displaysCountingDown == 0) actionTakenText.text = "";
+    }
 }

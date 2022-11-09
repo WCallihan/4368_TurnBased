@@ -6,8 +6,8 @@ public class TopEnemyTurnState : EnemyTurnState {
 
     public override void Enter() {
         Debug.Log("Entering Top Enemy Turn State");
-        base.Enter();
         StartEnemyTurns();
+        base.Enter();
     }
 
     public override void Exit() {
@@ -16,6 +16,7 @@ public class TopEnemyTurnState : EnemyTurnState {
     }
 
     protected override void NextTurn() {
+        Debug.Log("there");
         StateMachine.ChangeState<MiddleEnemyTurnState>();
     }
 }
