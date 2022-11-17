@@ -9,7 +9,7 @@ public abstract class PlayerTurnState : RPGState {
     [SerializeField] private InputController input;
     [SerializeField] private PlayerCharacter playerCharacter;
 
-    public static event Action PlayerTurnStarted;
+    public static event Action PlayerTurnsStarted;
     public static event Action PlayerTurnsEnded;
 
     protected abstract void NextTurn();
@@ -60,7 +60,7 @@ public abstract class PlayerTurnState : RPGState {
 
 
     //work around functions to allow subclasses to call the events
-    protected void StartPlayerTurns() { PlayerTurnStarted?.Invoke(); }
+    protected void StartPlayerTurns() { PlayerTurnsStarted?.Invoke(); }
     protected void EndPlayerTurns() { PlayerTurnsEnded?.Invoke(); }
 
 

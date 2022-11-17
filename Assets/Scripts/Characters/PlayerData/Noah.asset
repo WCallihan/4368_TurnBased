@@ -19,6 +19,6 @@ MonoBehaviour:
   defenseStat: 100
   healingStat: 40
   ability1: {fileID: 11400000, guid: aa200f49c93a12a4199162e755d7213c, type: 2}
-  ability2: {fileID: 11400000, guid: 757efc554eeb03542b2b282e18416819, type: 2}
+  ability2: {fileID: 11400000, guid: 5950b91adf56a5140ab977b9239ef7a6, type: 2}
   basicAttack: {fileID: 11400000, guid: 138b25a918d405d4a980b339c5d024e5, type: 2}
-  basicDodge: {fileID: 0}
+  basicDodge: {fileID: 11400000, guid: 86135fc4dc415684fb01c05796c44dd2, type: 2}

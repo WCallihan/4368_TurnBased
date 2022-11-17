@@ -22,7 +22,7 @@ public class UIController : MonoBehaviour {
 
     private void OnEnable() {
         //subscribe to turn start and ending events to update UI
-        PlayerTurnState.PlayerTurnStarted += ShowPlayerTurn;
+        PlayerTurnState.PlayerTurnsStarted += ShowPlayerTurn;
         PlayerTurnState.PlayerTurnsEnded += HidePlayerTurn;
         EnemyTurnState.EnemyTurnsStarted += ShowEnemyTurn;
         EnemyTurnState.EnemyTurnsEnded += HideEnemyTurn;
@@ -36,7 +36,7 @@ public class UIController : MonoBehaviour {
 
     private void OnDisable() {
         //unsubscribe from all events
-        PlayerTurnState.PlayerTurnStarted -= ShowPlayerTurn;
+        PlayerTurnState.PlayerTurnsStarted -= ShowPlayerTurn;
         PlayerTurnState.PlayerTurnsEnded -= HidePlayerTurn;
         EnemyTurnState.EnemyTurnsStarted -= ShowEnemyTurn;
         EnemyTurnState.EnemyTurnsEnded -= HideEnemyTurn;

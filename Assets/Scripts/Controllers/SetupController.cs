@@ -63,6 +63,10 @@ public class SetupController : MonoBehaviour {
             }
         }
 
+        topCharacter.SetBaseHitChance(100);
+        middleCharacter.SetBaseHitChance(150); //middle character's hit chance is larger by 50%
+        bottomCharacter.SetBaseHitChance(100);
+
         //randomly assign enemy characters
         List<CharacterData> enemyDataCopy = enemyDatas;
         foreach (var e in enemyCharacters) {
