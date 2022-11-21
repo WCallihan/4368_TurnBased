@@ -25,10 +25,11 @@ public abstract class EnemyTurnState : RPGState {
 
         //skip everything if the character is dead
         if(enemyCharacter.Dead) {
-            Debug.Log("here");
             NextTurn();
             return;
         }
+
+        enemyCharacter.Animator.SetTrigger("Activate");
 
         StartCoroutine(Attack());
         //TODO: show UI
@@ -73,6 +74,8 @@ public abstract class EnemyTurnState : RPGState {
         }
 
         //TODO: update UI
+
+        enemyCharacter.Animator.SetTrigger("UseAbility");
 
         Debug.Log($"{enemyCharacter.CharData.Name} attacked {target.CharData.Name} for {damage} damage");
         uiController.DisplayActionTaken($"{enemyCharacter.CharData.Name} attacked {target.CharData.Name} for {damage} damage");

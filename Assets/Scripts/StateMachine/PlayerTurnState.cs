@@ -37,6 +37,8 @@ public abstract class PlayerTurnState : RPGState {
         AbilityBase.EndCharacterTurn += EndCharacterTurn;
 
         playerCharacter.ShowPanel();
+
+        playerCharacter.Animator.SetTrigger("Activate");
     }
 
     public override void Exit() {
@@ -80,18 +82,22 @@ public abstract class PlayerTurnState : RPGState {
 
 
     public void UseAbility1() {
+        playerCharacter.Animator.SetTrigger("UseAbility");
         playerCharacter.CharData.Ability1.UseAbility(playerCharacter);
     }
 
     public void UseAbility2() {
+        playerCharacter.Animator.SetTrigger("UseAbility");
         playerCharacter.CharData.Ability2.UseAbility(playerCharacter);
     }
 
     public void UseAttack() {
+        playerCharacter.Animator.SetTrigger("UseAbility");
         playerCharacter.CharData.BasicAttack.UseAbility(playerCharacter);
     }
 
     public void UseDodge() {
+        playerCharacter.Animator.SetTrigger("UseAbility");
         playerCharacter.CharData.BasicDodge.UseAbility(playerCharacter);
     }
 }
