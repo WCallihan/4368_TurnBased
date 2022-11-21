@@ -19,7 +19,8 @@ public class PlayerCharacter : CharacterControllerBase {
         PlayerTurnState.PlayerTurnsStarted -= ResetHitChance;
     }
 
-    private void Awake() {
+    protected override void Awake() {
+        base.Awake();
         HidePanel();
     }
 

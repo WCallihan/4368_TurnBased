@@ -26,7 +26,7 @@ public class CharacterControllerBase : MonoBehaviour {
 
     public static event Action<CharacterControllerBase> CharacterTargeted;
 
-    private void Awake() {
+    protected virtual void Awake() {
         dead = false;
         gameObject.SetActive(false);
     }
