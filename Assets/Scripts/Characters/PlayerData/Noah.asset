@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Noah
   m_EditorClassIdentifier: 
   characterName: Noah
-  characterSprite: {fileID: 21300000, guid: 98b3141228edb2e41b7e9b0fba9e36c6, type: 3}
+  characterSprite: {fileID: 21300000, guid: f6d5a4be31036c442998280a5ea30f86, type: 3}
   maxHealth: 200
   attackStat: 50
   defenseStat: 100

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Josh
   m_EditorClassIdentifier: 
   characterName: Josh
-  characterSprite: {fileID: 21300000, guid: c9aa7fb803014b1479bdc3e9fe9b62ca, type: 3}
+  characterSprite: {fileID: 21300000, guid: a02a54388a93cb04d975f0c5d7cdb555, type: 3}
   maxHealth: 150
   attackStat: 40
   defenseStat: 90
