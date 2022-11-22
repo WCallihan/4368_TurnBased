@@ -88,6 +88,9 @@ public class CharacterControllerBase : MonoBehaviour {
         //apply damage, but clamp at 0
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, currentHealth);
 
+        //play animation
+        animator.SetTrigger("GetHit");
+
         //update healthbar UI
         healthbar.UpdateBar(currentHealth, charData.MaxHealth);
 
