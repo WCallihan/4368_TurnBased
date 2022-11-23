@@ -6,65 +6,42 @@ using UnityEngine;
 //abstract player turn state to be inherited by the top, middle, and bottom turn states
 public abstract class PlayerTurnState : RPGState {
 
-    [SerializeField] private InputController input;
-    [SerializeField] private PlayerCharacter playerCharacter;
+	[SerializeField] private ActionsPanel actionsPanel;
+	[SerializeField] private PlayerCharacter playerCharacter;
 
-    public static event Action PlayerTurnsStarted;
+	public static event Action PlayerTurnsStarted;
     public static event Action PlayerTurnsEnded;
 
     protected abstract void NextTurn();
 
     public override void Enter() {
-        //base.Enter();
-
         //skip everything if the character is dead
         if(playerCharacter.Dead) {
             NextTurn();
             return;
         }
 
-        //subscribe to input events
-        input.PressedAbility1 += UseAbility1;
-        input.PressedAbility2 += UseAbility2;
-        input.PressedAttack += UseAttack;
-        input.PressedDodge += UseDodge;
-        //subscribe to the action panel events
-        ActionsPanel.Ability1Selected += UseAbility1;
-        ActionsPanel.Ability2Selected += UseAbility2;
-        ActionsPanel.AttackSelected += UseAttack;
-        ActionsPanel.DodgeSelected += UseDodge;
-        //subscribe to the ability event
+        //subscribe to the ability events
         AbilityBase.EndCharacterTurn += EndCharacterTurn;
+		actionsPanel.AbilitySelected += playerCharacter.StartAbility;
 
-        playerCharacter.ShowPanel();
+		ShowPanel();
 
         playerCharacter.Animator.SetTrigger("Activate");
     }
 
     public override void Exit() {
-        //base.Exit();
-
-        //ubsubscribe from input events
-        input.PressedAbility1 -= UseAbility1;
-        input.PressedAbility2 -= UseAbility2;
-        input.PressedAttack -= UseAttack;
-        input.PressedDodge -= UseDodge;
-        //unsubscribe to the action panel events
-        ActionsPanel.Ability1Selected -= UseAbility1;
-        ActionsPanel.Ability2Selected -= UseAbility2;
-        ActionsPanel.AttackSelected -= UseAttack;
-        ActionsPanel.DodgeSelected -= UseDodge;
-        //unsubscribe to the ability event
+        //unsubscribe to the ability events
         AbilityBase.EndCharacterTurn -= EndCharacterTurn;
+		actionsPanel.AbilitySelected -= playerCharacter.StartAbility;
 
-        playerCharacter.HidePanel();
+		HidePanel();
     }
 
 
     //work around functions to allow subclasses to call the events
     protected void StartPlayerTurns() { PlayerTurnsStarted?.Invoke(); }
     protected void EndPlayerTurns() { PlayerTurnsEnded?.Invoke(); }
-
 
     private void EndCharacterTurn() {
         var enemies = FindObjectsOfType<EnemyCharacter>();
@@ -81,23 +58,10 @@ public abstract class PlayerTurnState : RPGState {
     }
 
 
-    public void UseAbility1() {
-        playerCharacter.Animator.SetTrigger("UseAbility");
-        playerCharacter.CharData.Ability1.UseAbility(playerCharacter);
-    }
+	public void ShowPanel() {
+		actionsPanel.SetActions(playerCharacter.CharData);
+		actionsPanel.gameObject.SetActive(true);
+	}
 
-    public void UseAbility2() {
-        playerCharacter.Animator.SetTrigger("UseAbility");
-        playerCharacter.CharData.Ability2.UseAbility(playerCharacter);
-    }
-
-    public void UseAttack() {
-        playerCharacter.Animator.SetTrigger("UseAbility");
-        playerCharacter.CharData.BasicAttack.UseAbility(playerCharacter);
-    }
-
-    public void UseDodge() {
-        playerCharacter.Animator.SetTrigger("UseAbility");
-        playerCharacter.CharData.BasicDodge.UseAbility(playerCharacter);
-    }
+	public void HidePanel() { actionsPanel.gameObject.SetActive(false); }
 }

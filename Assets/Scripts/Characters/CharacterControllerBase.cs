@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum CharacterStat { Attack, Defense, Healing }
-public enum ChangableStatis { HitChance, Shielding, Grappled }
+public enum ChangableStatus { HitChance, Shielding, Grappled }
 
 public class CharacterControllerBase : MonoBehaviour {
 

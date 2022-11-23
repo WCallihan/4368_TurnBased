@@ -14,7 +14,7 @@ public class CharacterData : ScriptableObject {
     [SerializeField] private AbilityBase ability1;
     [SerializeField] private AbilityBase ability2;
     [SerializeField] private DamagingAbility basicAttack;
-    [SerializeField] private StatisAbility basicDodge;
+    [SerializeField] private StatusAbility basicDodge;
 
     public string Name => characterName;
     public Sprite Sprite => characterSprite;
@@ -25,5 +25,5 @@ public class CharacterData : ScriptableObject {
     public AbilityBase Ability1 => ability1;
     public AbilityBase Ability2 => ability2;
     public DamagingAbility BasicAttack => basicAttack;
-    public StatisAbility BasicDodge => basicDodge;
+    public StatusAbility BasicDodge => basicDodge;
 }

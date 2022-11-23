@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class PlayerCharacter : CharacterControllerBase {
 
-    [SerializeField] private ActionsPanel actionsPanel;
-
-    private int baseHitChance;
+	private AbilityBase abilityToUse;
+	private int baseHitChance;
     private int hitChance = 100;
 
     public int HitChance => hitChance;
@@ -16,20 +15,8 @@ public class PlayerCharacter : CharacterControllerBase {
     }
 
     private void OnDisable() {
-        PlayerTurnState.PlayerTurnsStarted -= ResetHitChance;
-    }
-
-    protected override void Awake() {
-        base.Awake();
-        HidePanel();
-    }
-
-    public void ShowPanel() {
-        actionsPanel.SetActions(charData);
-        actionsPanel.gameObject.SetActive(true);
-    }
-
-    public void HidePanel() { actionsPanel.gameObject.SetActive(false); }
+        PlayerTurnState.PlayerTurnsStarted -= ResetHitChance;	
+	}
 
     public void SetBaseHitChance(int chance) {
         baseHitChance = chance;
@@ -44,4 +31,16 @@ public class PlayerCharacter : CharacterControllerBase {
     private void ResetHitChance() {
         hitChance = baseHitChance;
     }
+
+	public void StartAbility(AbilityBase ability) {
+		abilityToUse = ability;
+		Debug.Log($"{charData.Name} started ability {abilityToUse.AbilityName}");
+		abilityToUse.UseAbility(this, Animator);
+	}
+
+	//called in as an animation event in the UseAbility animation
+	public void ApplyAbility() {
+		Debug.Log($"{charData.Name} applied ability {abilityToUse.AbilityName}");
+		abilityToUse.ApplyAbility();
+	}
 }

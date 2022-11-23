@@ -17,4 +17,4 @@ MonoBehaviour:
   target: 2
   statToUse: 1
   power: 40
-  statisToChange: 1
+  statusToChange: 1

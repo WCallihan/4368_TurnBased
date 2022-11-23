@@ -20,17 +20,22 @@ public abstract class AbilityBase : ScriptableObject {
     public float Power => power;
 
     private CharacterControllerBase user;
+	private List<CharacterControllerBase> targetList = new List<CharacterControllerBase>();
     protected UIController uiController;
+	protected Animator characterAnimator;
 
     public static event Action<bool> StartTargetSelection;
     public static event Action EndCharacterTurn;
 
-    public void UseAbility(CharacterControllerBase abilityUser) {
+    public void UseAbility(CharacterControllerBase abilityUser, Animator animator) {
         uiController = FindObjectOfType<UIController>();
         user = abilityUser;
+		characterAnimator = animator;
+		targetList.Clear();
         switch(target) {
             case AbilityTarget.Self:
-                ApplyAbility(user, user);
+				targetList.Add(user);
+				StartAbility();
                 break;
             case AbilityTarget.OneAlly:
                 SelectSingleTarget(true);
@@ -55,8 +60,8 @@ public abstract class AbilityBase : ScriptableObject {
     }
 
     private void SetSingleTarget(CharacterControllerBase singleTarget) {
-        //apply the ability to the target
-        ApplyAbility(user, singleTarget);
+		targetList.Add(singleTarget);
+		StartAbility();
         //unsubscribe from the event just to be safe
         CharacterControllerBase.CharacterTargeted -= SetSingleTarget;
     }
@@ -70,9 +75,20 @@ public abstract class AbilityBase : ScriptableObject {
             targetsArray = FindObjectsOfType<EnemyCharacter>();
         }
         //convert to list and apply the ability
-        List<CharacterControllerBase> multipleTargets = new List<CharacterControllerBase>(targetsArray);
-        ApplyAbility(user, multipleTargets);
+        targetList = new List<CharacterControllerBase>(targetsArray);
+		StartAbility();
     }
+
+	//used to start the animation when the ability is ready to use
+	//the animation then calls the function to apply the ability at the right frame
+	private void StartAbility() {
+		characterAnimator.SetTrigger("UseAbility");
+	}
+
+	public void ApplyAbility() {
+		if(targetList.Count == 1) ApplyAbility(user, targetList[0]);
+		else ApplyAbility(user, targetList);
+	}
 
     //used for abilities that target one character
     protected abstract void ApplyAbility(CharacterControllerBase user, CharacterControllerBase target);
@@ -82,6 +98,6 @@ public abstract class AbilityBase : ScriptableObject {
 
     //helper function to allow subclasses to call the event
     protected void AbilityOver() {
-        EndCharacterTurn?.Invoke();
+		EndCharacterTurn?.Invoke();
     }
 }

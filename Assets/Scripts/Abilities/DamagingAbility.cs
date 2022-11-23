@@ -8,13 +8,15 @@ public class DamagingAbility : AbilityBase {
     protected override void ApplyAbility(CharacterControllerBase user, CharacterControllerBase target) {
         float damageAmount = CalcDamage(user, target);
         uiController.DisplayActionTaken($"{user.CharData.Name} attacked {target.CharData.Name} with {AbilityName} for {damageAmount} damage");
+		//characterAnimator.SetTrigger("UseAbility");
         target.TakeDamage(damageAmount);
         AbilityOver();
     }
 
     protected override void ApplyAbility(CharacterControllerBase user, List<CharacterControllerBase> targets) {
         uiController.DisplayActionTaken($"{user.CharData.Name} attacked all enemies with {AbilityName}");
-        foreach (var t in targets) {
+		//characterAnimator.SetTrigger("UseAbility");
+		foreach(var t in targets) {
             float damageAmount = CalcDamage(user, t);
             t.TakeDamage(damageAmount);
         }

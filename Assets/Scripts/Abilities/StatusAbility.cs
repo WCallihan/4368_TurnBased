@@ -2,28 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Abilities/StatisAbility")]
-public class StatisAbility : AbilityBase {
+[CreateAssetMenu(menuName = "Abilities/StatusAbility")]
+public class StatusAbility : AbilityBase {
 
-    [SerializeField] private ChangableStatis statisToChange;
+    [SerializeField] private ChangableStatus statusToChange;
 
     protected override void ApplyAbility(CharacterControllerBase user, CharacterControllerBase target) {
-        switch(statisToChange) {
-            case ChangableStatis.HitChance:
+        switch(statusToChange) {
+            case ChangableStatus.HitChance:
                 ApplyHitChanceChange(user, target.GetComponent<PlayerCharacter>());
                 break;
-            case ChangableStatis.Shielding:
+            case ChangableStatus.Shielding:
                 ApplyShielding(user, target.GetComponent<PlayerCharacter>());
                 break;
-            case ChangableStatis.Grappled:
+            case ChangableStatus.Grappled:
                 ApplyGrapple(user, target.GetComponent<EnemyCharacter>());
                 break;
         }
-        AbilityOver();
+		//characterAnimator.SetTrigger("UseAbility");
+		AbilityOver();
     }
 
     protected override void ApplyAbility(CharacterControllerBase user, List<CharacterControllerBase> targets) {
-        if(statisToChange != ChangableStatis.Shielding) {
+        if(statusToChange != ChangableStatus.Shielding) {
             Debug.LogError("This is only meant for Josh's Inspiration unless something changes.");
             return;
         }
@@ -33,7 +34,8 @@ public class StatisAbility : AbilityBase {
             playerTargets.Add(t.GetComponent<PlayerCharacter>());
         }
         ApplyShielding(user, playerTargets);
-        AbilityOver();
+		//characterAnimator.SetTrigger("UseAbility");
+		AbilityOver();
     }
 
     private void ApplyHitChanceChange(CharacterControllerBase user, PlayerCharacter target) {

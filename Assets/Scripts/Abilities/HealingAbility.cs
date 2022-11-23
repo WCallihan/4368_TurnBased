@@ -9,7 +9,8 @@ public class HealingAbility : AbilityBase {
         float healingAmount = CalcHealing(user);
         target.Heal(healingAmount);
         uiController.DisplayActionTaken($"{user.CharData.Name} healed {target.CharData.Name} with {AbilityName} for {healingAmount} hit points");
-        AbilityOver();
+		//characterAnimator.SetTrigger("UseAbility");
+		AbilityOver();
     }
 
     protected override void ApplyAbility(CharacterControllerBase user, List<CharacterControllerBase> targets) {
@@ -18,7 +19,8 @@ public class HealingAbility : AbilityBase {
             t.Heal(healingAmount);
         }
         uiController.DisplayActionTaken($"{user.CharData.Name} healed all allies with {AbilityName} for {healingAmount} hit points");
-        AbilityOver();
+		//characterAnimator.SetTrigger("UseAbility");
+		AbilityOver();
     }
 
     //uses a similar equation to Pokemon
