@@ -23,7 +23,7 @@ public abstract class PlayerTurnState : RPGState {
 
         //subscribe to the ability events
         AbilityBase.EndCharacterTurn += EndCharacterTurn;
-		actionsPanel.AbilitySelected += playerCharacter.StartAbility;
+		actionsPanel.AbilitySelected += OnAbilitySelected;
 
 		ShowPanel();
 
@@ -33,7 +33,7 @@ public abstract class PlayerTurnState : RPGState {
     public override void Exit() {
         //unsubscribe to the ability events
         AbilityBase.EndCharacterTurn -= EndCharacterTurn;
-		actionsPanel.AbilitySelected -= playerCharacter.StartAbility;
+		actionsPanel.AbilitySelected -= OnAbilitySelected;
 
 		HidePanel();
     }
@@ -44,18 +44,31 @@ public abstract class PlayerTurnState : RPGState {
     protected void EndPlayerTurns() { PlayerTurnsEnded?.Invoke(); }
 
     private void EndCharacterTurn() {
-        var enemies = FindObjectsOfType<EnemyCharacter>();
-        foreach(var e in enemies) {
-            if(!e.Dead) {
-                //an enemy is alive, the game continues
-                NextTurn();
-                return;
-            }
-        }
-
-        //all enemies are dead, go to win state
-        StateMachine.ChangeState<WinState>();
+		StartCoroutine(EndCharacterTurnWait());
     }
+
+	private IEnumerator EndCharacterTurnWait() {
+		//add a short wait after each turn
+		yield return new WaitForSeconds(1);
+
+		var enemies = FindObjectsOfType<EnemyCharacter>();
+		foreach(var e in enemies) {
+			if(!e.Dead) {
+				//an enemy is alive, the game continues
+				NextTurn();
+				yield break;
+			}
+		}
+
+		//all enemies are dead, go to win state
+		StateMachine.ChangeState<WinState>();
+	}
+
+
+	private void OnAbilitySelected(AbilityBase ability) {
+		playerCharacter.StartAbility(ability);
+		HidePanel();
+	}
 
 
 	public void ShowPanel() {
