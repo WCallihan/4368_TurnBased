@@ -16,6 +16,14 @@ public abstract class EnemyTurnState : RPGState {
 
     protected abstract void NextTurn();
 
+    private void OnEnable() {
+        enemyCharacter.EnemyCharacterTurnOver += EndCharacterTurn;
+    }
+
+    private void OnDisable() {
+        enemyCharacter.EnemyCharacterTurnOver -= EndCharacterTurn;
+    }
+
     private void Start() {
         uiController = FindObjectOfType<UIController>();
     }
@@ -31,7 +39,7 @@ public abstract class EnemyTurnState : RPGState {
 
         enemyCharacter.Animator.SetTrigger("Activate");
 
-        StartCoroutine(Attack());
+        StartCoroutine(enemyCharacter.PrepAttack());
         //TODO: show UI
     }
 
@@ -45,75 +53,23 @@ public abstract class EnemyTurnState : RPGState {
     protected void StartEnemyTurns() { EnemyTurnsStarted?.Invoke(); }
     protected void EndEnemyTurns() { EnemyTurnsEnded?.Invoke(); }
 
-
     private void EndCharacterTurn() {
+        StartCoroutine(EndCharacterTurnWait());
+    }
+
+    private IEnumerator EndCharacterTurnWait() {
+        yield return new WaitForSeconds(1);
+
         var playerCharacters = FindObjectsOfType<PlayerCharacter>();
         foreach(var p in playerCharacters) {
             if(!p.Dead) {
                 //a player character is alive, the game continues
                 NextTurn();
-                return;
+                yield break;
             }
         }
 
         //all player characters are dead, go to lose state
         StateMachine.ChangeState<LoseState>();
-    }
-
-
-    public IEnumerator Attack() {
-        var target = ChooseTarget();
-        float damage = ((enemyCharacter.CharData.AttackStat) * 50) / 100;
-
-        //if the enemy is grappled, distribute the damage between them and the target
-        if(enemyCharacter.Grappled) {
-            enemyCharacter.TakeDamage(damage / 2);
-            target.TakeDamage(damage / 2);
-        } else {
-            target.TakeDamage(damage);
-        }
-
-        //TODO: update UI
-
-        enemyCharacter.Animator.SetTrigger("UseAbility");
-
-        Debug.Log($"{enemyCharacter.CharData.Name} attacked {target.CharData.Name} for {damage} damage");
-        uiController.DisplayActionTaken($"{enemyCharacter.CharData.Name} attacked {target.CharData.Name} for {damage} damage");
-        yield return new WaitForSecondsRealtime(2);
-        EndCharacterTurn();
-    }
-
-    //randomly choose a target scaled based on their hit chance
-    private PlayerCharacter ChooseTarget() {
-        PlayerCharacter[] playerCharacters = FindObjectsOfType<PlayerCharacter>();
-        List<PlayerCharacter> possibleTargets = new List<PlayerCharacter>();
-        //make a new list with all non-dead player characters
-        foreach (var p in playerCharacters) {
-            if(!p.Dead) possibleTargets.Add(p);
-        }
-
-        int hitChancePool = 0;
-        List<int> hitChances = new List<int>();
-
-        //add all the hit chances into one pool and put the increments in an array corresponding to each character
-        for (int i=0; i<possibleTargets.Count; i++) {
-            hitChancePool += possibleTargets[i].HitChance;
-            hitChances.Add(hitChancePool);
-        }
-
-        //randomly choose a number in the pool, the higher the character's hit chance, the more likely that this number is within its range
-        int rand = UnityEngine.Random.Range(0, hitChancePool + 1);
-        /*Debug.Log($"hitChancePool: {hitChancePool}");
-        Debug.Log($"hitChances: {hitChances[0]}, {hitChances[1]}, {hitChances[2]}");
-        Debug.Log($"rand: {rand}");*/
-
-        //find which range the random number lies between and return that target
-        for(int i = 0; i < hitChances.Count; i++) {
-            if(rand <= hitChances[i]) {
-                return possibleTargets[i];
-            }
-        }
-
-        return null; //this should throw an error later, which is good
     }
 }
