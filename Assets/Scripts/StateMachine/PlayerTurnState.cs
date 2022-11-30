@@ -73,8 +73,8 @@ public abstract class PlayerTurnState : RPGState {
 
 	public void ShowPanel() {
 		actionsPanel.SetActions(playerCharacter.CharData);
-		actionsPanel.gameObject.SetActive(true);
+		actionsPanel.ActivatePanel();
 	}
 
-	public void HidePanel() { actionsPanel.gameObject.SetActive(false); }
+	public void HidePanel() { actionsPanel.DeactivatePanel(); }
 }
