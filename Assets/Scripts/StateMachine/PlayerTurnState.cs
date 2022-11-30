@@ -34,8 +34,6 @@ public abstract class PlayerTurnState : RPGState {
         //unsubscribe to the ability events
         AbilityBase.EndCharacterTurn -= EndCharacterTurn;
 		actionsPanel.AbilitySelected -= OnAbilitySelected;
-
-		HidePanel();
     }
 
 
