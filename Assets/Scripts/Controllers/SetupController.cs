@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class SetupController : MonoBehaviour {
 
+	[Header("UI")]
+	[SerializeField] private GameObject confirmButton;
+	[SerializeField] private Animator selectionPanelAnimator;
+
     [Header("Player Characters")]
     [SerializeField] private PlayerCharacter topCharacter;
     [SerializeField] private PlayerCharacter middleCharacter;
@@ -16,15 +20,35 @@ public class SetupController : MonoBehaviour {
     [SerializeField] private List<CharacterData> enemyDatas;
 
     private PlayerCharacter[] orderedPlayerControllers;
+	private int charactersChosen;
 
     public static event Action ConfirmedSelection;
 
     private void Awake() {
         orderedPlayerControllers = new PlayerCharacter[] { topCharacter, middleCharacter, bottomCharacter };
-    }
+		charactersChosen = 0;
+		confirmButton.SetActive(false);
+	}
 
-    //toggle whether the character is selected depending on the color of their blackout panel
-    public void ToggleCharacterSelection(CharacterData data, GameObject panel) {
+	private void Update() {
+		if(charactersChosen >= 3) { //shouldn't ever be higher than 3
+			confirmButton.SetActive(true);
+		} else {
+			confirmButton.SetActive(false);
+		}
+	}
+
+	public void ActivatePanel() {
+		selectionPanelAnimator.SetTrigger("Activate");
+	}
+
+	public void DeactivatePanel() {
+		charactersChosen = -3;
+		selectionPanelAnimator.SetTrigger("Deactivate");
+	}
+
+	//toggle whether the character is selected depending on the color of their blackout panel
+	public void ToggleCharacterSelection(CharacterData data, GameObject panel) {
         if(!panel.activeInHierarchy) {
             AssignCharacter(data, panel);
         } else {
@@ -38,6 +62,7 @@ public class SetupController : MonoBehaviour {
             if (c.CharData == null) {
                 c.AssignCharacter(data);
                 panel.SetActive(true);
+				charactersChosen++;
                 return;
             }
         }
@@ -49,6 +74,7 @@ public class SetupController : MonoBehaviour {
             if(c.CharData == data) {
                 c.UnassignCharacter();
                 panel.SetActive(false);
+				charactersChosen--;
                 return;
             }
         }

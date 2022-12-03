@@ -5,15 +5,16 @@ using UnityEngine;
 //setup state where the player selects their three characters and their placements
 public class SetupState : RPGState {
 
-    [SerializeField] private GameObject characterSelectPanel;
+	private SetupController setupController;
 
     public override void Enter() {
-        //base.Enter();
-        Debug.Log("Entering Setup State");
 
-        if(characterSelectPanel) characterSelectPanel.SetActive(true);
+		setupController = FindObjectOfType<SetupController>();
+
         //subscribe to the event to end the setup state
         SetupController.ConfirmedSelection += EndSetup;
+
+		setupController.ActivatePanel();
     }
 
     private void EndSetup() {
@@ -21,9 +22,6 @@ public class SetupState : RPGState {
     }
 
     public override void Exit() {
-        //base.Exit();
-        Debug.Log("Exiting Setup State");
-
-        if(characterSelectPanel) characterSelectPanel.SetActive(false);
+		setupController.DeactivatePanel();
     }
 }

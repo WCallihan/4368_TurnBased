@@ -38,14 +38,14 @@ public class EnemyCharacter : CharacterControllerBase {
 
         //if the enemy is grappled, distribute the damage between them and the target
         if (grappled) {
-            TakeDamage(damage / 2);
-            target.TakeDamage(damage / 2);
-        } else {
+			float halvedDamage = damage / 2;
+            TakeDamage(halvedDamage);
+            target.TakeDamage(halvedDamage);
+			uiController.DisplayActionTaken($"{charData.Name} attacked {target.CharData.Name} and themselves for {halvedDamage} damage");
+		} else {
             target.TakeDamage(damage);
-        }
-
-        Debug.Log($"{charData.Name} attacked {target.CharData.Name} for {damage} damage");
-        uiController.DisplayActionTaken($"{charData.Name} attacked {target.CharData.Name} for {damage} damage");
+			uiController.DisplayActionTaken($"{charData.Name} attacked {target.CharData.Name} for {damage} damage");
+		}
 
         EnemyCharacterTurnOver?.Invoke();
     }

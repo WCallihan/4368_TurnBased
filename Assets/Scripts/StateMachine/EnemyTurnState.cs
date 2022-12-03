@@ -37,17 +37,12 @@ public abstract class EnemyTurnState : RPGState {
             return;
         }
 
-        enemyCharacter.Animator.SetTrigger("Activate");
+		uiController.SetTurnName(enemyCharacter.CharData.Name);
+
+		enemyCharacter.Animator.SetTrigger("Activate");
 
         StartCoroutine(enemyCharacter.PrepAttack());
-        //TODO: show UI
     }
-
-    public override void Exit() {
-        //base.Exit();
-        //TODO: hide UI
-    }
-
 
     //work around functions to allow subclasses to call the events
     protected void StartEnemyTurns() { EnemyTurnsStarted?.Invoke(); }

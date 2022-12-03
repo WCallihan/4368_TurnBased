@@ -17,5 +17,5 @@ MonoBehaviour:
     to attack you.
   target: 0
   statToUse: 1
-  power: -33
-  statisToChange: 0
+  power: -50
+  statusToChange: 0

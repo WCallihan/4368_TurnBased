@@ -9,12 +9,18 @@ public abstract class PlayerTurnState : RPGState {
 	[SerializeField] private ActionsPanel actionsPanel;
 	[SerializeField] private PlayerCharacter playerCharacter;
 
+	private UIController uiController;
+
 	public static event Action PlayerTurnsStarted;
     public static event Action PlayerTurnsEnded;
 
     protected abstract void NextTurn();
 
-    public override void Enter() {
+	private void Start() {
+		uiController = FindObjectOfType<UIController>();
+	}
+
+	public override void Enter() {
         //skip everything if the character is dead
         if(playerCharacter.Dead) {
             NextTurn();
@@ -24,6 +30,8 @@ public abstract class PlayerTurnState : RPGState {
         //subscribe to the ability events
         AbilityBase.EndCharacterTurn += EndCharacterTurn;
 		actionsPanel.AbilitySelected += OnAbilitySelected;
+
+		uiController.SetTurnName(playerCharacter.CharData.Name);
 
 		ShowPanel();
 

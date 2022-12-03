@@ -6,7 +6,8 @@ using UnityEngine;
 public class UIController : MonoBehaviour {
 
     [Header("Turn Indicators")]
-    [SerializeField] private GameObject playerTurnUI;
+	[SerializeField] private TextMeshProUGUI turnNameText;
+	[SerializeField] private GameObject playerTurnUI;
     [SerializeField] private GameObject enemyTurnUI;
     [Header("End Screens")]
     [SerializeField] private GameObject winUI;
@@ -49,6 +50,7 @@ public class UIController : MonoBehaviour {
     }
 
     private void Start() {
+		turnNameText.text = "";
         HidePlayerTurn();
         HideEnemyTurn();
         HideWin();
@@ -83,6 +85,14 @@ public class UIController : MonoBehaviour {
 
     private void HideTargetSelection(CharacterControllerBase useless) { if(currentTargetingUI) currentTargetingUI.SetActive(false); }
 
+	public void SetTurnName(string characterName) {
+		turnNameText.text = $"{characterName}'s Turn:";
+	}
+
+	public void DisplayActionPermanent(string actionString) {
+		actionTakenText.text = actionString;
+	}
+
     public void DisplayActionTaken(string actionTakenString) {
         StartCoroutine(ActionTakenCoroutine(actionTakenString));
     }
@@ -90,7 +100,7 @@ public class UIController : MonoBehaviour {
     private IEnumerator ActionTakenCoroutine(string actionTakenString) {
         displaysCountingDown++;
         actionTakenText.text = actionTakenString;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         displaysCountingDown--;
         if(displaysCountingDown == 0) actionTakenText.text = "";
     }

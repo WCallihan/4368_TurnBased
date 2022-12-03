@@ -53,6 +53,7 @@ public abstract class AbilityBase : ScriptableObject {
     }
     
     private void SelectSingleTarget(bool allies) {
+		uiController.DisplayActionPermanent("Select a single target...");
         //invoke static event to tell UI to turn on target selection UI
         StartTargetSelection?.Invoke(allies);
         //subscribe to CharacterController static event to see when they're clicked

@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SelectionPanel_AC
+  m_Controller: {fileID: 9100000, guid: f7da21941fe12ef4db9bbb3c04c2d607, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 3b6bac4ff419ead49bf04c768c7f34e6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: cfe64304cb59c8c4cbee8778060a7350, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 935a83216c8fb234a9e89c89c6831dd7, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5d6a32a69a6da2340a29f68559d0703f, type: 2}
