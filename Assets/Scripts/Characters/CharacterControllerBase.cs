@@ -25,6 +25,9 @@ public class CharacterControllerBase : MonoBehaviour {
     public Animator Animator => animator;
 
     public static event Action<CharacterControllerBase> CharacterTargeted;
+	public static event Action<CharacterControllerBase, float> CharacterHurt;
+	public static event Action<CharacterControllerBase, float> CharacterHealed;
+	public static event Action<CharacterControllerBase, float> CharacterShielded;
 
     protected virtual void Awake() {
         dead = false;
@@ -65,28 +68,28 @@ public class CharacterControllerBase : MonoBehaviour {
     public void Heal(float healing) {
         if(dead) return;
 
-        Debug.Log($"{gameObject.name} healed by {healing}");
-
         //apply healing, but clamp at the MaxHealth of the character
         currentHealth = Mathf.Clamp(currentHealth + healing, currentHealth, charData.MaxHealth);
 
         //update healthbar UI
         healthbar.UpdateBar(currentHealth, charData.MaxHealth);
+
+		//set off static event to prompt damage popup
+		CharacterHealed?.Invoke(this, healing);
     }
 
-    public void TakeDamage(float damage) {
-        Debug.Log($"{gameObject.name} damage by {damage}");
-
+    public void TakeDamage(float damageTaken) {
+		float damageToHealth = damageTaken;
         if(shielding > 0) {
             //take away shielding before health
-            float originalDamage = damage;
-            damage = Mathf.Clamp(damage - shielding, 0, damage);
+            float originalDamage = damageTaken;
+            damageToHealth = Mathf.Clamp(damageTaken - shielding, 0, damageTaken);
             shielding = Mathf.Clamp(shielding - originalDamage, 0, shielding);
             shieldbar.UpdateBar(shielding);
         }        
 
         //apply damage, but clamp at 0
-        currentHealth = Mathf.Clamp(currentHealth - damage, 0, currentHealth);
+        currentHealth = Mathf.Clamp(currentHealth - damageToHealth, 0, currentHealth);
 
         //play animation
         animator.SetTrigger("GetHit");
@@ -94,15 +97,28 @@ public class CharacterControllerBase : MonoBehaviour {
         //update healthbar UI
         healthbar.UpdateBar(currentHealth, charData.MaxHealth);
 
+		//set off static event to prompt damage popup
+		CharacterHurt?.Invoke(this, damageTaken);
+
         if(currentHealth == 0) {
-            dead = true;
-            characterImage.sprite = null;
-            gameObject.SetActive(false);
+			StartCoroutine(Die());
         }
     }
 
     public void SetShielding(float shield) {
+		//set shielding amount
         shielding = shield;
+
+		//update the bar ui if the character has one
         if(shieldbar) shieldbar.TurnOnShielding(shielding);
+
+		//set off static event to prompt shielding popup
+		CharacterShielded?.Invoke(this, shield);
     }
+
+	private IEnumerator Die() {
+		dead = true;
+		yield return new WaitForSeconds(1);
+		gameObject.SetActive(false);
+	}
 }

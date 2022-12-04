@@ -10,7 +10,7 @@ public class PlayerCharacter : CharacterControllerBase {
 
     public int HitChance => hitChance;
 
-    private void OnEnable() {
+	private void OnEnable() {
         PlayerTurnState.PlayerTurnsStarted += ResetHitChance;
     }
 
