@@ -248,7 +248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4249716494563635268, guid: 9f81c993c41d64541b0913574543eb1e, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4249716494563635268, guid: 9f81c993c41d64541b0913574543eb1e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2050,6 +2050,10 @@ MonoBehaviour:
   healthbar: {fileID: 195703502}
   shieldbar: {fileID: 0}
   animator: {fileID: 500309879}
+  abilitySound: {fileID: 8300000, guid: a4f6487e7bff79448b6c8056a11e11d6, type: 3}
+  hurtSound: {fileID: 8300000, guid: aa4189c48ba5b664097a10cb2c8e2d29, type: 3}
+  healSound: {fileID: 8300000, guid: 4ef72a0e66670c24da3e719b178ac342, type: 3}
+  dieSound: {fileID: 0}
 --- !u!224 &500309878
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2113,7 +2117,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4249716494563635268, guid: 9f81c993c41d64541b0913574543eb1e, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4249716494563635268, guid: 9f81c993c41d64541b0913574543eb1e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2519,6 +2523,10 @@ MonoBehaviour:
   healthbar: {fileID: 2123861344}
   shieldbar: {fileID: 0}
   animator: {fileID: 700628294}
+  abilitySound: {fileID: 8300000, guid: a4f6487e7bff79448b6c8056a11e11d6, type: 3}
+  hurtSound: {fileID: 8300000, guid: aa4189c48ba5b664097a10cb2c8e2d29, type: 3}
+  healSound: {fileID: 8300000, guid: 4ef72a0e66670c24da3e719b178ac342, type: 3}
+  dieSound: {fileID: 0}
 --- !u!224 &700628293
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3600,6 +3608,10 @@ MonoBehaviour:
   healthbar: {fileID: 1292384944}
   shieldbar: {fileID: 0}
   animator: {fileID: 869866954}
+  abilitySound: {fileID: 8300000, guid: a4f6487e7bff79448b6c8056a11e11d6, type: 3}
+  hurtSound: {fileID: 8300000, guid: aa4189c48ba5b664097a10cb2c8e2d29, type: 3}
+  healSound: {fileID: 8300000, guid: 4ef72a0e66670c24da3e719b178ac342, type: 3}
+  dieSound: {fileID: 0}
 --- !u!224 &869866953
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4296,6 +4308,7 @@ GameObject:
   - component: {fileID: 1278534558}
   - component: {fileID: 1278534557}
   - component: {fileID: 1278534556}
+  - component: {fileID: 1278534559}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4369,6 +4382,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1278534559
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278534555}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 5247835ec9a244849a1d6fa9e2e1bb0e, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!224 &1292384943 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2253083048409740705, guid: b2c0e7e1ddae9ff498133f711f66ac46, type: 3}
@@ -4967,6 +5076,10 @@ MonoBehaviour:
   healthbar: {fileID: 177180372}
   shieldbar: {fileID: 246835709}
   animator: {fileID: 1496099764}
+  abilitySound: {fileID: 8300000, guid: a4f6487e7bff79448b6c8056a11e11d6, type: 3}
+  hurtSound: {fileID: 8300000, guid: aa4189c48ba5b664097a10cb2c8e2d29, type: 3}
+  healSound: {fileID: 8300000, guid: 4ef72a0e66670c24da3e719b178ac342, type: 3}
+  dieSound: {fileID: 0}
 --- !u!224 &1496099763
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5195,6 +5308,10 @@ MonoBehaviour:
   healthbar: {fileID: 1033028553}
   shieldbar: {fileID: 790003074}
   animator: {fileID: 1698184579}
+  abilitySound: {fileID: 8300000, guid: a4f6487e7bff79448b6c8056a11e11d6, type: 3}
+  hurtSound: {fileID: 8300000, guid: aa4189c48ba5b664097a10cb2c8e2d29, type: 3}
+  healSound: {fileID: 8300000, guid: 4ef72a0e66670c24da3e719b178ac342, type: 3}
+  dieSound: {fileID: 0}
 --- !u!224 &1698184578
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5272,6 +5389,10 @@ MonoBehaviour:
   healthbar: {fileID: 1814319883}
   shieldbar: {fileID: 2048870702147175824}
   animator: {fileID: 1755092777}
+  abilitySound: {fileID: 8300000, guid: a4f6487e7bff79448b6c8056a11e11d6, type: 3}
+  hurtSound: {fileID: 8300000, guid: aa4189c48ba5b664097a10cb2c8e2d29, type: 3}
+  healSound: {fileID: 8300000, guid: 4ef72a0e66670c24da3e719b178ac342, type: 3}
+  dieSound: {fileID: 0}
 --- !u!224 &1755092776
 RectTransform:
   m_ObjectHideFlags: 0

@@ -531,3 +531,4 @@ MonoBehaviour:
   characterImage: {fileID: 4095985338322285566}
   nameText: {fileID: 4957864138677251359}
   blackoutPanel: {fileID: 4957864139084421156}
+  buttonPressSound: {fileID: 8300000, guid: 0eceb7bc62b116b4d80b45b7ad6d01d2, type: 3}

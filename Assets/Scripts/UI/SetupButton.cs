@@ -10,6 +10,7 @@ public class SetupButton : MonoBehaviour {
     [SerializeField] private Image characterImage;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private GameObject blackoutPanel;
+	[SerializeField] private AudioClip buttonPressSound;
 
     private SetupController setupController;
 
@@ -26,5 +27,6 @@ public class SetupButton : MonoBehaviour {
     //called by the setup buttons and send the character data and blackout panel to the setup controller
     public void SendCharacter() {
         setupController.ToggleCharacterSelection(characterData, blackoutPanel);
+		AudioHelper.PlayClip2D(buttonPressSound);
     }
 }

@@ -272,6 +272,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1012371772576866369}
+        m_TargetAssemblyTypeName: ActionButtonUI, Assembly-CSharp
+        m_MethodName: PlayButtonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1012371772576866369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,6 +303,7 @@ MonoBehaviour:
   damageAbilityColor: {r: 1, g: 0.35534585, b: 0.42136446, a: 1}
   healingAbilityColor: {r: 0.29874206, g: 1, b: 0.42771903, a: 1}
   statusAbilityColor: {r: 0.41194963, g: 0.76624084, b: 1, a: 1}
+  buttonPressSound: {fileID: 8300000, guid: 0eceb7bc62b116b4d80b45b7ad6d01d2, type: 3}
 --- !u!1 &2059225840164316544
 GameObject:
   m_ObjectHideFlags: 0

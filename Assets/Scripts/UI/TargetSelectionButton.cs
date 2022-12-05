@@ -8,11 +8,11 @@ public class TargetSelectionButton : MonoBehaviour {
     [SerializeField] private Button button;
     [SerializeField] private Image buttonImage;
     [SerializeField] private CharacterControllerBase character;
+	[SerializeField] private AudioClip buttonPressSound;
 
-    private void Awake() {
+	private void Awake() {
         button.enabled = true;
         buttonImage.enabled = true;
-        //TODO: position perfectly over the character
     }
 
     private void Update() {
@@ -22,7 +22,9 @@ public class TargetSelectionButton : MonoBehaviour {
         }
     }
 
+	//called by the target buttons to target the associated character
     public void SetTarget() {
         character.Targeted();
+		AudioHelper.PlayClip2D(buttonPressSound);
     }
 }

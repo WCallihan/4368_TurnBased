@@ -14,6 +14,7 @@ public class ActionButtonUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     [SerializeField] private Color damageAbilityColor;
     [SerializeField] private Color healingAbilityColor;
     [SerializeField] private Color statusAbilityColor;
+	[SerializeField] private AudioClip buttonPressSound;
 
 	private bool lerpFlag;
 
@@ -56,4 +57,8 @@ public class ActionButtonUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             return Color.white;
         }
     }
+
+	public void PlayButtonSound() {
+		AudioHelper.PlayClip2D(buttonPressSound);
+	}
 }

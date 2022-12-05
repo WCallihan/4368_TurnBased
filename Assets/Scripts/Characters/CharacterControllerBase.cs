@@ -9,10 +9,17 @@ public enum ChangableStatus { HitChance, Shielding, Grappled }
 
 public class CharacterControllerBase : MonoBehaviour {
 
+	[Header("UI")]
     [SerializeField] private Image characterImage;
     [SerializeField] private HealthbarUI healthbar;
     [SerializeField] private ShieldbarUI shieldbar;
+
+	[Header("Effects")]
     [SerializeField] private Animator animator;
+	[SerializeField] private AudioClip abilitySound;
+	[SerializeField] private AudioClip hurtSound;
+	[SerializeField] private AudioClip healSound;
+	[SerializeField] private AudioClip dieSound;
 
     protected CharacterData charData;
     private float currentHealth;
@@ -76,6 +83,9 @@ public class CharacterControllerBase : MonoBehaviour {
 
 		//set off static event to prompt damage popup
 		CharacterHealed?.Invoke(this, healing);
+
+		//play sound
+		AudioHelper.PlayClip2D(healSound);
     }
 
     public void TakeDamage(float damageTaken) {
@@ -100,6 +110,9 @@ public class CharacterControllerBase : MonoBehaviour {
 		//set off static event to prompt damage popup
 		CharacterHurt?.Invoke(this, damageTaken);
 
+		//play sound
+		AudioHelper.PlayClip2D(hurtSound);
+
         if(currentHealth == 0) {
 			StartCoroutine(Die());
         }
@@ -114,11 +127,15 @@ public class CharacterControllerBase : MonoBehaviour {
 
 		//set off static event to prompt shielding popup
 		CharacterShielded?.Invoke(this, shield);
+
+		//play sound
+		AudioHelper.PlayClip2D(healSound);
     }
 
 	private IEnumerator Die() {
 		dead = true;
 		yield return new WaitForSeconds(1);
+		AudioHelper.PlayClip2D(dieSound);
 		gameObject.SetActive(false);
 	}
 }

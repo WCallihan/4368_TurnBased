@@ -150,6 +150,7 @@ MonoBehaviour:
   button: {fileID: 1521156382385602120}
   buttonImage: {fileID: 1521156382385602121}
   character: {fileID: 0}
+  buttonPressSound: {fileID: 8300000, guid: 0eceb7bc62b116b4d80b45b7ad6d01d2, type: 3}
 --- !u!114 &6708768776312194466
 MonoBehaviour:
   m_ObjectHideFlags: 0
