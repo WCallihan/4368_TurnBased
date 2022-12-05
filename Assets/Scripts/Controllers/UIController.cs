@@ -27,10 +27,6 @@ public class UIController : MonoBehaviour {
         PlayerTurnState.PlayerTurnsEnded += HidePlayerTurn;
         EnemyTurnState.EnemyTurnsStarted += ShowEnemyTurn;
         EnemyTurnState.EnemyTurnsEnded += HideEnemyTurn;
-        WinState.WinStateEntered += ShowWin;
-        WinState.WinStateExited += HideWin;
-        LoseState.LoseStateEntered += ShowLoss;
-        LoseState.LoseStateExited += HideLoss;
         AbilityBase.StartTargetSelection += ShowTargetSelection;
         CharacterControllerBase.CharacterTargeted += HideTargetSelection;
     }
@@ -41,16 +37,12 @@ public class UIController : MonoBehaviour {
         PlayerTurnState.PlayerTurnsEnded -= HidePlayerTurn;
         EnemyTurnState.EnemyTurnsStarted -= ShowEnemyTurn;
         EnemyTurnState.EnemyTurnsEnded -= HideEnemyTurn;
-        WinState.WinStateEntered -= ShowWin;
-        WinState.WinStateExited -= HideWin;
-        LoseState.LoseStateEntered -= ShowLoss;
-        LoseState.LoseStateExited -= HideLoss;
         AbilityBase.StartTargetSelection -= ShowTargetSelection;
         CharacterControllerBase.CharacterTargeted -= HideTargetSelection;
     }
 
     private void Start() {
-		turnNameText.text = "";
+		ResetTurnName();
         HidePlayerTurn();
         HideEnemyTurn();
         HideWin();
@@ -66,13 +58,19 @@ public class UIController : MonoBehaviour {
 
     private void HideEnemyTurn() { enemyTurnUI.SetActive(false); }
 
-    private void ShowWin() { winUI.SetActive(true); }
+    public void ShowWin() {
+		ResetTurnName();
+		winUI.SetActive(true);
+	}
 
-    private void HideWin() { winUI.SetActive(false); }
+    public void HideWin() { winUI.SetActive(false); }
 
-    private void ShowLoss() { loseUI.SetActive(true); }
+    public void ShowLoss() {
+		ResetTurnName();
+		loseUI.SetActive(true);
+	}
 
-    private void HideLoss() { loseUI.SetActive(false); }
+    public void HideLoss() { loseUI.SetActive(false); }
 
     private void ShowTargetSelection(bool allies) {
         if(allies) {
@@ -84,6 +82,10 @@ public class UIController : MonoBehaviour {
     }
 
     private void HideTargetSelection(CharacterControllerBase useless) { if(currentTargetingUI) currentTargetingUI.SetActive(false); }
+
+	private void ResetTurnName() {
+		turnNameText.text = "";
+	}
 
 	public void SetTurnName(string characterName) {
 		turnNameText.text = $"{characterName}'s Turn:";

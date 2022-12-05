@@ -5,18 +5,22 @@ using UnityEngine;
 
 public class LoseState : RPGState {
 
-    public static event Action LoseStateEntered;
-    public static event Action LoseStateExited;
+	private UIController uiController;
 
     public override void Enter() {
-        //base.Enter();
-        Debug.Log("Entering Lose State");
-        LoseStateEntered?.Invoke();
+		//show loss screen
+		uiController = FindObjectOfType<UIController>();
+		uiController.ShowLoss();
+
+		//make all the living enemies bob up and down
+		var enemyCharacters = FindObjectsOfType<EnemyCharacter>();
+		foreach (var e in enemyCharacters) {
+			if(!e.Dead) e.Animator.SetTrigger("Activate");
+		}
     }
 
     public override void Exit() {
-        //base.Exit();
-        Debug.Log("Exiting Lose State");
-        LoseStateExited?.Invoke();
+		//hide loss screen
+		uiController.HideLoss();
     }
 }

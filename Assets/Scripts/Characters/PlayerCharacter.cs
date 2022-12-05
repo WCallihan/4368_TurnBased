@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class PlayerCharacter : CharacterControllerBase {
     private int hitChance = 100;
 
     public int HitChance => hitChance;
+
+	public static event Action<CharacterControllerBase, float> PlayerHitChanceChange;
 
 	private void OnEnable() {
         PlayerTurnState.PlayerTurnsStarted += ResetHitChance;
@@ -25,6 +28,7 @@ public class PlayerCharacter : CharacterControllerBase {
 
     public void ChangeHitChance(int chance) {
         hitChance += chance;
+		PlayerHitChanceChange?.Invoke(this, chance);
     }
 
     //reset hit chance at the beginning of the player's turns
@@ -34,13 +38,11 @@ public class PlayerCharacter : CharacterControllerBase {
 
 	public void StartAbility(AbilityBase ability) {
 		abilityToUse = ability;
-		Debug.Log($"{charData.Name} started ability {abilityToUse.AbilityName}");
 		abilityToUse.UseAbility(this, Animator);
 	}
 
 	//called in as an animation event in the UseAbility animation
 	public void ApplyAbility() {
-		Debug.Log($"{charData.Name} applied ability {abilityToUse.AbilityName}");
 		abilityToUse.ApplyAbility();
 	}
 }

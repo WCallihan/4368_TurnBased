@@ -5,18 +5,22 @@ using UnityEngine;
 
 public class WinState : RPGState {
 
-    public static event Action WinStateEntered;
-    public static event Action WinStateExited;
+	private UIController uiController;
 
     public override void Enter() {
-        //base.Enter();
-        Debug.Log("Entering Win State");
-        WinStateEntered?.Invoke();
+		//show win screen
+		uiController = FindObjectOfType<UIController>();
+		uiController.ShowWin();
+
+		//make all the living player characters bob up and down
+		var playerCharacters = FindObjectsOfType<PlayerCharacter>();
+		foreach (var p in playerCharacters) {
+			if(!p.Dead) p.Animator.SetTrigger("Activate");
+		}
     }
 
     public override void Exit() {
-        //base.Exit();
-        Debug.Log("Exiting Win State");
-        WinStateExited?.Invoke();
+		//hide win screen
+		uiController.HideWin();
     }
 }

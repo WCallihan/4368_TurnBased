@@ -19,7 +19,6 @@ public class StatusAbility : AbilityBase {
                 ApplyGrapple(user, target.GetComponent<EnemyCharacter>());
                 break;
         }
-		//characterAnimator.SetTrigger("UseAbility");
 		AbilityOver();
     }
 
@@ -34,12 +33,17 @@ public class StatusAbility : AbilityBase {
             playerTargets.Add(t.GetComponent<PlayerCharacter>());
         }
         ApplyShielding(user, playerTargets);
-		//characterAnimator.SetTrigger("UseAbility");
 		AbilityOver();
     }
 
     private void ApplyHitChanceChange(CharacterControllerBase user, PlayerCharacter target) {
-        uiController.DisplayActionTaken($"{user.CharData.Name} decreased their hit chance by {Power}%");
+		string str;
+		if(Power < 0) {
+			str = "decreased";
+		} else {
+			str = "increased";
+		}
+        uiController.DisplayActionTaken($"{user.CharData.Name} {str} their hit chance by {Mathf.Abs(Power)}%");
         target.ChangeHitChance((int)Power);
     }
 

@@ -17,4 +17,4 @@ MonoBehaviour:
     damage.
   target: 3
   statToUse: 0
-  power: 100
+  power: 75

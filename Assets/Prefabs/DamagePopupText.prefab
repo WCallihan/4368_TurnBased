@@ -169,42 +169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20a7914e7215d574cbf1d1e083890404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupAnimation: {fileID: 7400000, guid: 24fc8cb10dcbbe84196b1441b34a8c89, type: 2}
-  curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.24909307
-      value: 0.8661798
-      inSlope: 0.5528592
-      outSlope: 0.5528592
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33672428
-      outWeight: 0.05910876
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  totalYDif: 160
   popupText: {fileID: 5432218298724805820}
   damageColor: {r: 1, g: 0, b: 0.09756088, a: 1}
   healingColor: {r: 0, g: 0.7647059, b: 0, a: 1}
   shieldingColor: {r: 0.003921569, g: 0.7058824, b: 0.9960785, a: 1}
+  hitChanceColor: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 1}
