@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameController : MonoBehaviour {
+public class DamagePopupController : MonoBehaviour {
 
 	[SerializeField] private GameObject damagePopupPrefab;
 
@@ -46,15 +46,4 @@ public class GameController : MonoBehaviour {
 		var popup = Instantiate(damagePopupPrefab, character.gameObject.transform);
 		return popup.GetComponent<DamagePopup>();
 	}
-
-	public void LoadMainMenu() {
-		SceneManager.LoadScene("MainMenu");
-	}
-
-	public void QuitGame() {
-        #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-        #endif
-        Application.Quit();
-    }
 }

@@ -16,7 +16,6 @@ public class TopEnemyTurnState : EnemyTurnState {
     }
 
     protected override void NextTurn() {
-        Debug.Log("there");
         StateMachine.ChangeState<MiddleEnemyTurnState>();
     }
 }
