@@ -4217,10 +4217,10 @@ MonoBehaviour:
   - {fileID: 500309875}
   - {fileID: 700628290}
   enemyDatas:
-  - {fileID: 11400000, guid: 28f44540f89b75148bddaf7377623cc1, type: 2}
   - {fileID: 11400000, guid: 311bb8e066eeae94eb7fecd02aff3816, type: 2}
   - {fileID: 11400000, guid: 7a895bcc25295e54fa9e630049476622, type: 2}
   - {fileID: 11400000, guid: f4e4b279fa308c24eb28d21b703543ad, type: 2}
+  - {fileID: 11400000, guid: 17278abc05767e14e98f800028d23315, type: 2}
 --- !u!224 &1161375591 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4249716494563635268, guid: 9f81c993c41d64541b0913574543eb1e, type: 3}
