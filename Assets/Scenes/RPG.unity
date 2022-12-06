@@ -2379,7 +2379,7 @@ MonoBehaviour:
   abilitySound: {fileID: 8300000, guid: a4f6487e7bff79448b6c8056a11e11d6, type: 3}
   hurtSound: {fileID: 8300000, guid: aa4189c48ba5b664097a10cb2c8e2d29, type: 3}
   healSound: {fileID: 8300000, guid: 4ef72a0e66670c24da3e719b178ac342, type: 3}
-  dieSound: {fileID: 0}
+  dieSound: {fileID: 8300000, guid: 1f912b6ccac9ece4b8a4dce898230fc6, type: 3}
 --- !u!224 &500309878
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2717,7 +2717,7 @@ MonoBehaviour:
   abilitySound: {fileID: 8300000, guid: a4f6487e7bff79448b6c8056a11e11d6, type: 3}
   hurtSound: {fileID: 8300000, guid: aa4189c48ba5b664097a10cb2c8e2d29, type: 3}
   healSound: {fileID: 8300000, guid: 4ef72a0e66670c24da3e719b178ac342, type: 3}
-  dieSound: {fileID: 0}
+  dieSound: {fileID: 8300000, guid: 1f912b6ccac9ece4b8a4dce898230fc6, type: 3}
 --- !u!224 &700628293
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3627,7 +3627,7 @@ MonoBehaviour:
   abilitySound: {fileID: 8300000, guid: a4f6487e7bff79448b6c8056a11e11d6, type: 3}
   hurtSound: {fileID: 8300000, guid: aa4189c48ba5b664097a10cb2c8e2d29, type: 3}
   healSound: {fileID: 8300000, guid: 4ef72a0e66670c24da3e719b178ac342, type: 3}
-  dieSound: {fileID: 0}
+  dieSound: {fileID: 8300000, guid: 1f912b6ccac9ece4b8a4dce898230fc6, type: 3}
 --- !u!224 &869866953
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5406,7 +5406,7 @@ MonoBehaviour:
   abilitySound: {fileID: 8300000, guid: a4f6487e7bff79448b6c8056a11e11d6, type: 3}
   hurtSound: {fileID: 8300000, guid: aa4189c48ba5b664097a10cb2c8e2d29, type: 3}
   healSound: {fileID: 8300000, guid: 4ef72a0e66670c24da3e719b178ac342, type: 3}
-  dieSound: {fileID: 0}
+  dieSound: {fileID: 8300000, guid: 1f912b6ccac9ece4b8a4dce898230fc6, type: 3}
 --- !u!224 &1496099763
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5638,7 +5638,7 @@ MonoBehaviour:
   abilitySound: {fileID: 8300000, guid: a4f6487e7bff79448b6c8056a11e11d6, type: 3}
   hurtSound: {fileID: 8300000, guid: aa4189c48ba5b664097a10cb2c8e2d29, type: 3}
   healSound: {fileID: 8300000, guid: 4ef72a0e66670c24da3e719b178ac342, type: 3}
-  dieSound: {fileID: 0}
+  dieSound: {fileID: 8300000, guid: 1f912b6ccac9ece4b8a4dce898230fc6, type: 3}
 --- !u!224 &1698184578
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5719,7 +5719,7 @@ MonoBehaviour:
   abilitySound: {fileID: 8300000, guid: a4f6487e7bff79448b6c8056a11e11d6, type: 3}
   hurtSound: {fileID: 8300000, guid: aa4189c48ba5b664097a10cb2c8e2d29, type: 3}
   healSound: {fileID: 8300000, guid: 4ef72a0e66670c24da3e719b178ac342, type: 3}
-  dieSound: {fileID: 0}
+  dieSound: {fileID: 8300000, guid: 1f912b6ccac9ece4b8a4dce898230fc6, type: 3}
 --- !u!224 &1755092776
 RectTransform:
   m_ObjectHideFlags: 0
