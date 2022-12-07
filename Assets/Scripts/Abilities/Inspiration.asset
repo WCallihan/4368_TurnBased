@@ -16,5 +16,5 @@ MonoBehaviour:
   abilityDescription: Give all allies a little bit of shielding to block damage.
   target: 2
   statToUse: 1
-  power: 30
+  power: 25
   statusToChange: 1

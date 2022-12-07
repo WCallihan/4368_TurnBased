@@ -60,6 +60,7 @@ public class UIController : MonoBehaviour {
 
     public void ShowWin() {
 		ResetTurnName();
+		DisplayActionPermanent("");
 		winUI.SetActive(true);
 	}
 
@@ -67,6 +68,7 @@ public class UIController : MonoBehaviour {
 
     public void ShowLoss() {
 		ResetTurnName();
+		DisplayActionPermanent("");
 		loseUI.SetActive(true);
 	}
 

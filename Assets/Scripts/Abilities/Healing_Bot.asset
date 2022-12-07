@@ -17,4 +17,4 @@ MonoBehaviour:
     them a lot.
   target: 1
   statToUse: 2
-  power: 100
+  power: 50

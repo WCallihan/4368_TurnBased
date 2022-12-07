@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: The Crusader
   characterSprite: {fileID: 21300000, guid: 075257bf68781ce4c94480ff3c1e3b29, type: 3}
+  classSymbol: {fileID: 0}
   maxHealth: 175
-  attackStat: 60
+  attackStat: 65
   defenseStat: 0
   healingStat: 0
   ability1: {fileID: 0}

@@ -16,4 +16,4 @@ MonoBehaviour:
   abilityDescription: Gives all allies splints, healing them by a small amount.
   target: 2
   statToUse: 2
-  power: 30
+  power: 10

@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Big Guy
   characterSprite: {fileID: 21300000, guid: 30c749146f13bcb4a9fc3e557a280c90, type: 3}
+  classSymbol: {fileID: 0}
   maxHealth: 250
-  attackStat: 45
+  attackStat: 50
   defenseStat: 0
   healingStat: 0
   ability1: {fileID: 0}

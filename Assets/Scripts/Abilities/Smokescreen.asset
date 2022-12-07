@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Smokescreen
   m_EditorClassIdentifier: 
   abilityName: Smokescreen
-  abilityDescription: Throw down a smokescreen, making it less likely for enemies
-    to attack you.
+  abilityDescription: Deploy a smokescreen, making it less likely for enemies to
+    attack you.
   target: 0
   statToUse: 1
   power: -50

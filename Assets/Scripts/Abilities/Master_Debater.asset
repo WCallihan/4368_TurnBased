@@ -17,4 +17,4 @@ MonoBehaviour:
     moderate damage.
   target: 4
   statToUse: 0
-  power: 50
+  power: 40

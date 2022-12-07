@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: The Principal
   characterSprite: {fileID: 21300000, guid: b4bf1d9331f28a34f8fc3d35d486d266, type: 3}
+  classSymbol: {fileID: 0}
   maxHealth: 150
-  attackStat: 75
+  attackStat: 80
   defenseStat: 0
   healingStat: 0
   ability1: {fileID: 0}

@@ -19,7 +19,11 @@ public class LoseState : RPGState {
 		}
     }
 
-    public override void Exit() {
+	public void ExitLoseState() {
+		StateMachine.ChangeState<SetupState>();
+	}
+
+	public override void Exit() {
 		//hide loss screen
 		uiController.HideLoss();
     }

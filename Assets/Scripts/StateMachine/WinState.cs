@@ -19,6 +19,10 @@ public class WinState : RPGState {
 		}
     }
 
+	public void ExitWinState() {
+		StateMachine.ChangeState<SetupState>();
+	}
+
     public override void Exit() {
 		//hide win screen
 		uiController.HideWin();

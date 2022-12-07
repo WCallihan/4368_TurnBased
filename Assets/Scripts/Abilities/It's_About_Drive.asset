@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: It's_About_Drive
   m_EditorClassIdentifier: 
   abilityName: It's About Drive
-  abilityDescription: Heals the user a little bit.
+  abilityDescription: Heals the user a little bit by sheer force of will.
   target: 0
   statToUse: 2
   power: 50
