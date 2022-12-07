@@ -46,6 +46,7 @@ public class CharacterControllerBase : MonoBehaviour {
         charData = data;
         characterImage.sprite = charData.Sprite;
         currentHealth = data.MaxHealth;
+		healthbar.SetHealthText(data.MaxHealth);
     }
 
     public void UnassignCharacter() {
