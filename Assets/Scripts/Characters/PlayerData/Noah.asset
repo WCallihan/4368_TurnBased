@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Noah
   characterSprite: {fileID: 21300000, guid: f6d5a4be31036c442998280a5ea30f86, type: 3}
+  classSymbol: {fileID: 21300000, guid: 126bd368b9eb8be419acbc1b7452d78e, type: 3}
   maxHealth: 200
   attackStat: 50
   defenseStat: 100

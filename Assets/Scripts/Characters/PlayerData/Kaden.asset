@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Kaden
   characterSprite: {fileID: 21300000, guid: ec7f3ab1effbbc54aa3c8fa2d3780859, type: 3}
+  classSymbol: {fileID: 21300000, guid: b4eb653bcd0cab140948c10e6c8f6a2a, type: 3}
   maxHealth: 120
   attackStat: 80
   defenseStat: 75

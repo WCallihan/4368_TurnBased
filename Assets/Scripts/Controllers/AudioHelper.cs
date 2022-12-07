@@ -13,7 +13,7 @@ public static class AudioHelper {
         audioSource.volume = volume;
         //activate
         audioSource.Play();
-		Object.Destroy(audioSource, clip.length);
+		Object.Destroy(audioObject, clip.length);
         //return
         return audioSource;
     }

@@ -7,6 +7,7 @@ public class CharacterData : ScriptableObject {
 
     [SerializeField] private string characterName;
     [SerializeField] private Sprite characterSprite;
+	[SerializeField] private Sprite classSymbol;
     [SerializeField] private float maxHealth;
     [SerializeField, Range(0, 100)] private float attackStat;
     [SerializeField, Range(0, 100)] private float defenseStat;
@@ -18,6 +19,7 @@ public class CharacterData : ScriptableObject {
 
     public string Name => characterName;
     public Sprite Sprite => characterSprite;
+	public Sprite ClassSymbol => classSymbol;
     public float MaxHealth => maxHealth;
     public float AttackStat => attackStat;
     public float DefenseStat => defenseStat;
